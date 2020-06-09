@@ -1,0 +1,41 @@
+{% set data = __SELF__.data %}
+
+<section class="feedback modal-bdrad">
+    <div class="request__block request__block_v2 modal-bdrad">
+        <div class="container">
+            <button class="close" type="button" data-dismiss="modal"><div class="close-fix"></div></button>
+            <div class="kuzon-modal__title col-11">заявка на обучение</div>
+            <div class="kuzon-modal subtitle request__subtitle col-11 ml-3">{{ data.program.name }}</div>
+            <div class="modal-body">
+                <div class="container">
+                    {{ form_ajax('onSendProgramRequest', { flash: true, files:true, success:"$('#modalContainer').modal('hide')" }) }}
+
+                        <input type="hidden" name="resume_id"  value="{{ data.resume.id }}">
+                        <input type="hidden" name="program_id" value="{{ data.program.id }}">
+                        <input type="hidden" name="type" value="1">
+
+                        <div class="row col-12 mb-3">
+                        <span class="request__text"><img src="{{ data.program.organization.getPublicLogo() }}" alt="{{ data.program.organization.name }}">{{ data.program.organization.name }}</span>
+                        </div>
+                            {% partial 'inputs/fullname.htm' value = data.resume.fullName %}
+                            {% partial 'inputs/edu_level.htm' data = data %}
+                            {% partial 'inputs/birth_date.htm' value = data.resume.user.birthDateView %}
+                            {% partial 'inputs/contacts.htm' phone = true email = true phvalue = data.resume.user.usernameView emvalue = data.resume.user.email email_required = 'required' %}
+
+                        {% if data.resume %}
+                            {% partial 'inputs/passport.htm' resume = data.resume %}
+                        {% endif %}
+
+                        {% partial 'inputs/documents.htm' documents = data.resume.documents %}
+
+                        {% partial 'inputs/agree.htm' btnText = "Отправить заявку" divId="send-request" %}
+
+                        <div class="kuzon-modal-actions" id="send-request">
+                            {% partial 'inputs/send_button.htm' btnText = "Отправить заявку" %}
+                        </div>
+                    {{ form_close }}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

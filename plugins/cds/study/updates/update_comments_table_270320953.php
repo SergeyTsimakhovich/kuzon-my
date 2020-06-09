@@ -1,0 +1,30 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Cds\Study\Updates;
+
+use Schema;
+use October\Rain\Database\Schema\Blueprint;
+use October\Rain\Database\Updates\Migration;
+
+class UpdateCommentsTable1 extends Migration
+{
+    public function up()
+    {
+        Schema::table('cds_study_comments', function($table)
+        {
+            $table->dropColumn('owner_id');
+            $table->integer('object_id');
+            $table->string('object_type');
+            $table->string('guest_name')->nullable();
+            $table->string('guest_session_token')->nullable();
+        });
+    }
+
+    public function down()
+    {
+        //
+    }
+}
+

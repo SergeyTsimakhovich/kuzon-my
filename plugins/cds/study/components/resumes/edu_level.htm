@@ -1,0 +1,23 @@
+
+<div class="lk-main-info__form-group kuzon-form-group lk-main-info__form-group row">
+    <div class="col-11">
+        <h4 class="lk-main-info__subtitle title-3">
+            Данные об образовании
+        </h4>
+        <div class="kuzon-form-group__items row">
+            <div class="kuzon-form-group__item col-12">
+                <ul class="education">
+                    {% for item in data.eduLevels %}
+                        <li>
+                            <label class="kuzon-checkbox">
+                                <input class="kuzon-checkbox__control" type="checkbox" name="edu_level[{{ loop.index - 1 }}]" value="1" {{ item.checked }}>
+                                <span class="kuzon-checkbox__text">{{ item.title }}</span>
+                                <span class="kuzon-checkbox__checkbox"></span>
+                            </label>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

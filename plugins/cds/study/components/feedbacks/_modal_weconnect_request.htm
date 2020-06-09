@@ -1,0 +1,128 @@
+{% set data = __SELF__.data %}
+
+<section class="feedback modal-bdrad">
+    <div class="communication__block modal-bdrad">
+        <div class="container">
+            <button class="close" type="button" data-dismiss="modal"><div class="close-fix"></div></button>
+            <div class="kuzon-modal__title col-11">мы на связи</div>
+            <div class="kuzon-modal communication__social ml-3 mb-4 ">
+                <a href="#" class="communication__link mr-2">
+                    <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M17.3437 1.94933C16.8476 1.4923 14.8398 0.0352702 10.3632 0.0157389C10.3632 0.0157389 5.08586 -0.300667 2.51554 2.05871C1.08585 3.4884 0.581949 5.58605 0.527261 8.18371C0.472574 10.7814 0.406167 15.6486 5.09757 16.9689H5.10148L5.09757 18.9845C5.09757 18.9845 5.06632 19.8009 5.60539 19.965C6.25382 20.1681 6.63664 19.547 7.25773 18.879C7.59757 18.5118 8.06632 17.9728 8.42179 17.5626C11.6327 17.8321 14.0976 17.215 14.3788 17.1251C15.0273 16.9142 18.6952 16.4454 19.289 11.5782C19.9062 6.5548 18.9921 3.38293 17.3437 1.94933ZM17.8866 11.2111C17.3827 15.2736 14.4101 15.5314 13.8632 15.7071C13.6288 15.7814 11.4609 16.3204 8.7382 16.1446C8.7382 16.1446 6.70695 18.5939 6.07414 19.2306C5.86711 19.4376 5.64054 19.4181 5.64445 19.0079C5.64445 18.7384 5.66007 15.6603 5.66007 15.6603C5.65617 15.6603 5.65617 15.6603 5.66007 15.6603C1.68351 14.5587 1.91789 10.4142 1.96086 8.24621C2.00382 6.07824 2.41398 4.3009 3.62492 3.10558C5.8007 1.13293 10.2812 1.4259 10.2812 1.4259C14.0663 1.44152 15.8788 2.58214 16.3007 2.96496C17.6952 4.16027 18.4062 7.01964 17.8866 11.2111ZM12.457 8.0548C12.4726 8.39074 11.9687 8.41418 11.953 8.07824C11.9101 7.21886 11.5077 6.8009 10.6796 6.75402C10.3437 6.73449 10.3749 6.23058 10.707 6.25011C11.7968 6.30871 12.4023 6.93371 12.457 8.0548ZM13.2499 8.49621C13.289 6.83996 12.2538 5.54308 10.289 5.39855C9.95695 5.37511 9.99211 4.87121 10.3241 4.89465C12.5898 5.05871 13.7968 6.6173 13.7538 8.50793C13.7499 8.84386 13.2421 8.82824 13.2499 8.49621ZM15.0859 9.01964C15.0898 9.35558 14.582 9.35949 14.582 9.02355C14.5585 5.83996 12.4374 4.10558 9.8632 4.08605C9.53117 4.08214 9.53117 3.58214 9.8632 3.58214C12.7421 3.60168 15.0585 5.58996 15.0859 9.01964ZM14.6445 12.8517V12.8595C14.2226 13.6017 13.4335 14.422 12.621 14.1603L12.6132 14.1486C11.789 13.9181 9.84757 12.9181 8.62101 11.9415C7.9882 11.4415 7.41007 10.8517 6.96476 10.2853C6.56242 9.78136 6.15617 9.18371 5.76164 8.46496C4.92961 6.96105 4.74601 6.28918 4.74601 6.28918C4.48429 5.47668 5.3007 4.68761 6.04679 4.26574H6.05461C6.41398 4.07824 6.75773 4.14074 6.9882 4.41808C6.9882 4.41808 7.47257 4.99621 7.67961 5.28136C7.87492 5.54699 8.13664 5.97277 8.27336 6.21105C8.51164 6.63683 8.3632 7.07043 8.12882 7.25011L7.66007 7.62511C7.42179 7.81652 7.45304 8.17199 7.45304 8.17199C7.45304 8.17199 8.14836 10.8009 10.746 11.465C10.746 11.465 11.1015 11.4962 11.2929 11.2579L11.6679 10.7892C11.8476 10.5548 12.2812 10.4064 12.7069 10.6446C13.2812 10.9689 14.0116 11.4728 14.496 11.9298C14.7695 12.1525 14.832 12.4923 14.6445 12.8517Z" fill="#234D60"></path>
+                    </svg>
+                </a>
+                <a href="#" class="communication__link mr-2">
+                    <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 0.322266C4.47581 0.322266 0 4.7931 0 10.3112C0 15.8292 4.47581 20.3 10 20.3C15.5242 20.3 20 15.8292 20 10.3112C20 4.7931 15.5242 0.322266 10 0.322266ZM14.9113 7.16546L13.2702 14.8907C13.1492 15.4385 12.8226 15.5714 12.3669 15.3137L9.86693 13.473L8.66129 14.633C8.52823 14.7659 8.41532 14.8787 8.15726 14.8787L8.33468 12.3371L12.9677 8.15629C13.1694 7.97907 12.9234 7.87838 12.6573 8.0556L6.93145 11.6564L4.46371 10.8871C3.92742 10.718 3.91532 10.3514 4.57661 10.0937L14.2177 6.38004C14.6653 6.21893 15.0565 6.48879 14.9113 7.16546Z" fill="#234D60"></path>
+                    </svg>
+                </a>
+                <a href="#" class="communication__link mr-2">
+                    <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M17.0045 3.33294C15.1339 1.45877 12.6429 0.427979 9.99554 0.427979C4.53125 0.427979 0.0848214 4.87243 0.0848214 10.3343C0.0848214 12.079 0.540179 13.7836 1.40625 15.2874L0 20.4191L5.25446 19.0402C6.70089 19.8301 8.33036 20.2451 9.99107 20.2451H9.99554C15.4554 20.2451 20 15.8006 20 10.3387C20 7.6926 18.875 5.2071 17.0045 3.33294ZM9.99554 18.5762C8.51339 18.5762 7.0625 18.179 5.79911 17.4293L5.5 17.2508L2.38393 18.0674L3.21429 15.0286L3.01786 14.7163C2.19196 13.4043 1.75893 11.8916 1.75893 10.3343C1.75893 5.79612 5.45536 2.10134 10 2.10134C12.2009 2.10134 14.2679 2.9581 15.8214 4.51544C17.375 6.07279 18.3304 8.13883 18.3259 10.3387C18.3259 14.8814 14.5357 18.5762 9.99554 18.5762ZM14.5134 12.4093C14.2679 12.2843 13.0491 11.6864 12.8214 11.606C12.5938 11.5213 12.4286 11.4811 12.2634 11.731C12.0982 11.9809 11.625 12.5342 11.4777 12.7038C11.3348 12.8689 11.1875 12.8912 10.942 12.7662C9.48661 12.0389 8.53125 11.4677 7.57143 9.82112C7.31696 9.38381 7.82589 9.41505 8.29911 8.46904C8.37946 8.30394 8.33929 8.16114 8.27679 8.0362C8.21429 7.91125 7.71875 6.69305 7.51339 6.19773C7.3125 5.7158 7.10714 5.78274 6.95536 5.77381C6.8125 5.76489 6.64732 5.76489 6.48214 5.76489C6.31696 5.76489 6.04911 5.82736 5.82143 6.07279C5.59375 6.32268 4.95536 6.92062 4.95536 8.13883C4.95536 9.35704 5.84375 10.5351 5.96429 10.7002C6.08929 10.8653 7.70982 13.3642 10.1964 14.4396C11.7679 15.1179 12.3839 15.1759 13.1696 15.0599C13.6473 14.9885 14.6339 14.4619 14.8393 13.8818C15.0446 13.3017 15.0446 12.8064 14.9821 12.7038C14.9241 12.5922 14.7589 12.5297 14.5134 12.4093Z" fill="#234D60"></path>
+                    </svg>
+                </a>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    {# <form> #}
+                        <div class="row col-11 mb-4">
+                            <span class="request__text"><img src="{{ data.organization.getPublicLogo }}" alt="">{{ data.organization.name }}</span>
+                        </div>
+                        <div class="communication__navtab">
+                            <div data-tab="1" class="communication__navtab-item communication__navtab-item--v1 communication__navtab-item_active">оставить заявку</div>
+                            <div data-tab="2" class="communication__navtab-item communication__navtab-item--v1">заказать звонок</div>
+                            <div data-tab="3" class="communication__navtab-item communication__navtab-item--v1 ">напишите нам</div>
+                        </div>
+
+                        <div data-tab="1" class="communication__tabitem communication__tabitem--v1 communication__tabitem_active">
+                        {{ form_ajax('onSendOrganizationRequest', { flash: true, files:true, success:"$('#modalContainer').modal('hide')" }) }}
+                            
+                            <input type="hidden" name="resume_id"  value="{{ data.resume.id }}">
+                            <input type="hidden" name="organization_id" value="{{ data.organization.id }}">
+                            <input type="hidden" name="type" value="1">
+                            
+                            {% if data.organization.programs is not empty %}
+                                {% partial 'inputs/programs_select.htm' programs = data.organization.programs %}
+                            {% endif %}
+                            {% partial 'inputs/fullname.htm' value = data.resume.fullName %}
+                            {% partial 'inputs/edu_level.htm' data = data %}
+                            {% partial 'inputs/birth_date.htm' value = data.resume.birthDateView %}
+                            {% partial 'inputs/contacts.htm' phone = true email = true phvalue = data.resume.user.usernameView emvalue = data.resume.user.email email_required = 'required' %}
+
+                            {% if data.resume %}
+                                {% partial 'inputs/passport.htm' resume = data.resume %}
+                            {% endif %}
+
+                            {% partial 'inputs/documents.htm' documents = data.resume.documents %}
+
+                            {% partial 'inputs/agree.htm' btnText = "Отправить заявку" divId="send-request" %}
+
+                            <div class="kuzon-modal-actions" id="send-request">
+                                {% partial 'inputs/send_button.htm' btnText = "Отправить заявку" %}
+                            </div>
+                        {{ form_close() }}
+                        </div>
+
+                        <div data-tab="2" class="communication__tabitem communication__tabitem--v1">
+                            {{ form_ajax('onSendOrganizationRequest', { flash: true, files:true, success:"$('#modalContainer').modal('hide')" }) }}
+                            
+                                <input type="hidden" name="organization_id" value="{{ data.organization.id }}">
+                                <input type="hidden" name="type" value="2">
+                                
+                                {% partial 'inputs/fullname.htm' value = data.resume.user.fullName %}
+                                {% partial 'inputs/contacts.htm' phone = true phvalue = data.resume.user.usernameView phone_required = 'required' %}
+
+                                {% partial 'inputs/agree.htm' btnText = "Перезвоните мне" divId="call-me" %}
+
+                                <div class="kuzon-modal-actions" id="call-me">
+                                    {% partial 'inputs/send_button.htm' btnText = "Перезвоните мне" %}
+                                </div>
+                            {{ form_close() }}
+                        </div>
+
+                        <div data-tab="3" class="communication__tabitem communication__tabitem--v1 ">
+                            {{ form_ajax('onSendOrganizationRequest', { flash: true, files:true, success:"$('#modalContainer').modal('hide')" }) }}
+                            
+                                <input type="hidden" name="organization_id" value="{{ data.organization.id }}">
+                                <input type="hidden" name="type" value="3">
+       
+                                {% partial 'inputs/fullname.htm' value = data.resume.user.fullName %}
+                                {% partial 'inputs/contacts.htm' email = true emvalue = data.resume.user.email email_required = 'required' %}
+
+                                <div class="kuzon-form-group__item col-10">
+                                    <div class="kuzon-input">
+                                        <textarea type="text" class="kuzon-input__input" placeholder="Ваше сообщение" name="body"></textarea>
+                                        <img class="new-event__textarea-icon" src="assets/img/svg/textarea-icon.svg" alt="">
+                                    </div>
+                                </div>
+
+                                {% partial 'inputs/agree.htm' btnText = "Отправить сообщение" divId="send-msg" %}
+
+                                <div class="kuzon-modal-actions" id="send-msg">
+                                    {% partial 'inputs/send_button.htm' btnText = "Отправить сообщение" %}
+                                </div>
+                            {{ form_close() }}
+                        </div>
+
+                    {# </form> #}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+//modal tabs для окна communication-v2
+$('.communication__navtab-item--v1').click(function(event){
+	if ($(this).hasClass('communication__navtab-item_active')) return;
+
+	var tabName = $(this).data('tab'),
+		tab = $('.communication__tabitem--v1[data-tab="'+tabName+'"]');
+
+	$('.communication__navtab-item--v1.communication__navtab-item_active').removeClass('communication__navtab-item_active');
+	$(this).addClass('communication__navtab-item_active');
+
+	$('.communication__tabitem--v1.communication__tabitem_active').removeClass('communication__tabitem_active');
+	tab.addClass('communication__tabitem_active');
+});
+</script>

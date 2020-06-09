@@ -1,0 +1,80 @@
+{% set data = __SELF__.data %}
+
+<section class="feedback modal-bdrad">
+    <div class="offer-partners__block modal-bdrad">
+        <div class="container">
+            <button class="close" type="button" data-dismiss="modal"><div class="close-fix"></div></button>
+            <div class="kuzon-modal__title">оставьте контактные данные</div>
+            <div class="modal-body">
+                <div class="container">
+                    {{ form_ajax('onSendFormCapture', {class:'kuzon-validation', flash: true, success:"$('#modalContainer').modal('hide')"}) }}
+
+                         <input type="hidden" name="status" value="{{ data.status }}">
+                         <input type="hidden" name="form_capture_id" value="{{ data.form_capture_id }}">
+                         <input type="hidden" name="page_title" value="{{ data.objectName }}">
+
+                        <div class="lk-main-info__form-group kuzon-form-group kuzon-form-group--contact row">
+                            <div class="col-11">
+                                <div class="kuzon-form-group__items row">
+                                    <div class="kuzon-form-group__item col-12 col-md-5">
+                                        <div class="kuzon-input">
+                                            <input type="text" class="kuzon-input__input kv-req kv-name" placeholder=" " name="name" value="{{ user.name }}">
+                                            <span class="kuzon-input__placeholder">Ваше имя*</span>
+                                        </div>
+                                    </div>
+                                    <div class="kuzon-form-group__item col-12 col-md-5">
+                                        <div class="kuzon-input">
+                                            <input type="text" class="kuzon-input__input kv-again kv-phone"  placeholder=" " name="phone" value="{{ user.username }}">
+                                            <span class="kuzon-input__placeholder">Номер телефона</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="lk-main-info__form-group kuzon-form-group kuzon-form-group--email row">
+                            <div class="col-11">
+                                <div class="kuzon-form-group__items row">
+                                    <div class="kuzon-form-group__item col-12 col-md-5">
+                                        <div class="kuzon-input">
+                                            <input name="email" type="email" class="kuzon-input__input kv-again kv-email" placeholder=" " value="{{ user.email }}">
+                                            <span class="kuzon-input__placeholder">Адрес электронной почты</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="kuzon-form-group__items row">
+                            <div class="kuzon-form-group__item col-11">
+                                <label class="kuzon-checkbox">
+                                    <input class="kuzon-checkbox__control" data-k-confim=".conf1" id="accountPersonalData" type="checkbox" name="personal" value="1">
+                                    <span class="kuzon-checkbox__text">Я согласен(-на) с условиями пользовательского соглашения</span>
+                                    <span class="kuzon-checkbox__checkbox"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="kuzon-modal-actions">
+                            <div class="kuzon-form-group__items row justify-content-end">
+                                <button type="submit" class="kuzon-btn conf1 kuzon-btn--disabled" disabled>Отправить</button>
+                            </div>
+                        </div>
+                    {{ form_close }}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    $('#accountPersonalData').change(function () {
+        var conf1 = $('.conf1').prop('disabled');
+        if (conf1) {
+            $('.conf1').prop('disabled', false);
+            $('.conf1').removeClass('kuzon-btn--disabled');
+        } else {
+            $('.conf1').prop('disabled', true);
+            $('.conf1').addClass('kuzon-btn--disabled');
+        }
+    })
+
+
+</script>

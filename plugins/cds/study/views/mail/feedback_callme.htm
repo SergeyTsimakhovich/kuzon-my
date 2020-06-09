@@ -1,0 +1,40 @@
+subject = "Перезвоните мне. {{ subject }}"
+==
+
+==
+
+<table class="kuzon-table ">
+    <tr class="kuzon-table__tr">
+        <th class="kuzon-table__td kuzon-table__th">ФИО</th>
+        <td class="kuzon-table__td">{{ fio }}</td>
+    </tr>
+    <tr class="kuzon-table__tr">
+        <th class="kuzon-table__td kuzon-table__th">НОМЕР ТЕЛЕФОНА</th>
+        <td class="kuzon-table__td">{{ phone }}</td>
+    </tr>
+</table>
+
+<style>
+.kuzon-table {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 100%;
+  width: 100%;
+  color: #234D60;
+}
+.kuzon-table__tr:nth-child(2n+1) {
+  background-color: #fff;
+}
+.kuzon-table__td {
+  padding-top: 18px;
+  padding-bottom: 18px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.kuzon-table__th {
+  color: #828282;
+  text-align: right;
+}
+</style>

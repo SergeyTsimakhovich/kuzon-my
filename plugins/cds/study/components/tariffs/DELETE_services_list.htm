@@ -1,0 +1,77 @@
+{% set tariffsList   = __SELF__.data.tariffsList  ?? tariffsList %}
+{% set servicesList  = __SELF__.data.servicesList ?? servicesList %}
+{% set sectorMain    = __SELF__.data.sectorMain   ?? sectorMain %}
+
+{% if __SELF__.properties.classObject == 'Organization' %}
+
+<div class="row">
+        <div class="col-md-12">
+        <div class="row">
+            <div class="col-12 col-md-12">
+                <h4>Описание</h4>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+    {% for index, item in servicesList %}
+
+        <div class="row">
+            <div class="col-12 col-md-4">
+                <div>
+                    <span>{{ item }}</span>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-8">
+                <div class="row">
+                    {% for item in tariffsList %}
+                        {% set itemChecked = '' %}
+                        {% for tariffService in item.services %}
+
+                            {% if tariffService.id == index %}
+                                {% set itemChecked = 'checked' %}
+                            {% endif %}
+                        {% endfor %}
+
+                        <div class="col-12 col-md-3" style="margin-left: auto; margin-right: auto;">
+                            <input class="form-check-input" type="radio" {{ itemChecked }} disabled>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <br>
+
+    {% endfor %}
+    </div>
+</div>
+
+{% endif %}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-12 col-md-3"></div>
+{#                {% if sectorMain|length > 0 %}#}
+                    {% for item in tariffsList %}
+                        <div class="col-12 col-md-2">
+                            {% if item.costs_periods.first %}
+                                <button type="button" id="button_tariff_{{ item.id }}"
+                                        class="btn btn-warning modal--js"
+                                        data-toggle="modal"
+                                        data-target="#modalContainer"
+                                        data-modal-name="Tariffs::{{ __SELF__.properties.classObject == 'Organization' ? 'Selected' : 'SelectedProgram' }}"
+                                        data-modal-param="tariff_id: {{ item.id }}, cost_period: {{ item.costs_periods.first.id }}"
+                                >Выбрать
+                                </button>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+{#                {% endif %}#}
+        </div>
+    </div>
+</div>

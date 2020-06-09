@@ -1,0 +1,14 @@
+
+<label class="kuzon-rating__label">
+    <input type="checkbox" {{ value > 0 ? 'checked' : '' }} class="kuzon-rating__control" data-request="{{ __SELF__ }}::onMakeRate" data-request-data="status: '{{ value > 0 ? 0 : 1 }}', comment_id: {{ id }}">
+    <div class="kuzon-rating__icon kuzon-rating__like">
+        {% content "rating-icon.htm" %}
+    </div>
+</label>
+
+<label class="kuzon-rating__label">
+    <input type="checkbox" {{ value < 0 ? 'checked' : '' }} class="kuzon-rating__control" data-request="{{ __SELF__ }}::onMakeRate" data-request-data="status: '{{ value < 0 ? 0 : -1 }}', comment_id: {{ id }}">
+    <div class="kuzon-rating__icon kuzon-rating__dislike">
+        {% content "rating-icon.htm" %}
+    </div>
+</label>

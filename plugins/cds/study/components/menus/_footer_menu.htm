@@ -1,0 +1,9 @@
+{% set data = __SELF__.data %}
+
+<ul class="footer__items footer__items-col">
+    {% for item in data.menus %}
+    <li class="footer__item">
+        <a class="footer__link footer__link--nav" href="{{ item.slug|app }}">{{ item.title }}</a>
+    </li>
+    {% endfor %}
+</ul>

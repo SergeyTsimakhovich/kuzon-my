@@ -1,0 +1,122 @@
+{% set user = data.user %}
+<h3 class="lk-main-info__title lk-main-info__subtitle title-3">
+    Персональные данные
+</h3>
+<input type="hidden" name="username" value="{{ user.username }}">
+<div class="lk-resume__form-group kuzon-form-group kuzon-form-group--contact lk-resume__form-group row">
+    <div class="col-10 col-sm-11">
+        <div class="kuzon-form-group__items row">
+            <div class="kuzon-form-group__item col-12 col-lg-5">
+                <div class="kuzon-input">
+                    <input type="text" class="kuzon-input__input kv-name" placeholder="   " name="surname" value="{{ user.resume.surname}}">
+                    <span class="kuzon-input__placeholder">
+                        Фамилия
+                    </span>
+                </div>
+            </div>
+            <div class="kuzon-form-group__item col-12 col-lg-5">
+                <div class="kuzon-input">
+                    <input type="text" class="kuzon-input__input kv-name"" placeholder="   " name="name" value="{{ user.resume.name }}">
+                    <span class="kuzon-input__placeholder">
+                        Имя
+                    </span>
+                </div>
+            </div>
+            <div class="kuzon-form-group__item col-12 col-lg-5">
+                <div class="kuzon-input">
+                    <input type="text" class="kuzon-input__input kv-name"" placeholder="   " name="midname" value="{{ user.resume.midname }}">
+                    <span class="kuzon-input__placeholder">
+                        Отчество
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="lk-resume__form-group kuzon-form-group kuzon-form-group--day lk-resume__form-group row">
+    <div class="col-10 col-sm-11">
+        <div class="kuzon-form-group__items row">
+            <div class="kuzon-form-group__item col-12 col-lg-5">
+                <div class="kuzon-input">
+                    <input type="text" class="kuzon-input__input kuzon-input__input--datepicker kv-date" placeholder="   " maxlength="10" minlength="10" name="birth_date" value="{{ user.resume.birthDateView }}">
+                    <span class="kuzon-input__placeholder">
+                        Дата рождения
+                    </span>
+                </div>
+                <div class="kuzon-input kuzon-input--gender">
+                    <label class="kuzon-input__gender">
+                        <input class="hide" type="radio" name="sex" {{ user.resume.sex == 'male' ? 'checked' : '' }} value="male">
+                        <span>Мужчина</span>
+                    </label>
+                    <label class="kuzon-input__gender">
+                        <input class="hide" type="radio" name="sex" {{ user.resume.sex == 'female' ? 'checked' : '' }} value="female">
+                        <span>Женщина</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="lk-resume__form-group kuzon-form-group kuzon-form-group--adress lk-resume__form-group row">
+    <div class="col-10 col-sm-11">
+        <div class="kuzon-form-group__items row">
+            <div class="kuzon-form-group__item col-12 col-md-8">
+                <div class="kuzon-input">
+                    <input type="text" class="kuzon-input__input kv-addr" placeholder="   " name="address" value="{{ user.resume.address }}">
+                    <span class="kuzon-input__placeholder">
+                        Адрес прописки
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="lk-resume__form-group kuzon-form-group kuzon-form-group--passport lk-resume__form-group row">
+    <div class="col-10 col-sm-11">
+        <div class="kuzon-form-group__items row">
+            <div class="kuzon-form-group__item col-12 col-lg-5">
+                <div class="kuzon-input">
+                    <input type="text" class="kuzon-input__input justNumber" placeholder="   " maxlength="4" minlength="4" name="series" value="{{ user.resume.series }}">
+                    <span class="kuzon-input__placeholder">
+                        Серия паспорта
+                    </span>
+                </div>
+            </div>
+            <div class="kuzon-form-group__item col-12 col-lg-5">
+                <div class="kuzon-input">
+                    <input type="text" class="kuzon-input__input justNumber" placeholder="   " maxlength="6" minlength="6"  name="number" value="{{ user.resume.number }}">
+                    <span class="kuzon-input__placeholder">
+                        Номер паспорта
+                    </span>
+                </div>
+            </div>
+            <div class="kuzon-form-group__item col-12 col-lg-9">
+                <div class="kuzon-input">
+                    <input type="text" class="kuzon-input__input kv-rus" placeholder="   " name="issued_by" value="{{ user.resume.issued_by }}">
+                    <span class="kuzon-input__placeholder">
+                        Кем выдан
+                    </span>
+                </div>
+            </div>
+            <div class="kuzon-form-group__item col-12 col-lg-3">
+                <div class="kuzon-input">
+                    <input type="text" class="kuzon-input__input justNumber" placeholder="   " maxlength="6" minlength="6"  name="code" value="{{ user.resume.code }}">
+                    <span class="kuzon-input__placeholder">
+                        Код подразделения
+                    </span>
+                </div>
+            </div>
+            <div class="kuzon-form-group__item col-12 col-lg-5">
+                <div class="kuzon-input">
+                    <input type="text" class="kuzon-input__input kuzon-input__input--datepicker kv-date" placeholder="   " maxlength="10" minlength="10" name="issued_date" value="{{ user.resume.issuedDateView }}">
+                    <span class="kuzon-input__placeholder">
+                        Дата выдачи
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

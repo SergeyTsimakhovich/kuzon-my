@@ -1,0 +1,8 @@
+<label for="programLast">Программа</label>
+<select id="programLast" name="program_id" >
+    <option selected value=""></option>
+    {% for index, item in program %}
+        <option value="{{ index }}">{{ item }}</option>
+    {% endfor %}
+</select>
+

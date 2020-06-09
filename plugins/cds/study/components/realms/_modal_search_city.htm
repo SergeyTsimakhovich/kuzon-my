@@ -1,0 +1,41 @@
+<section class="feedback">
+    <div class="search-city__block">
+        <div class="container">
+
+            <button class="close" type="button" data-dismiss="modal"><div class="close-fix"></div></button>
+            <div class="row">
+                <div class="col-10">
+                    <div class="kuzon-modal__title">Поиск и выбор города</div>
+                </div>
+
+                <div class="modal-body col-12" style="padding: 0px 15px;">
+                    <div class="kuzon-form-group row">
+                        <div class="col-12">
+                            <div class="kuzon-form-group__items row">
+                                <div class="kuzon-form-group__item col-12">
+                                    <div class="kuzon-input">
+                                        <input
+                                            type="text" class="kuzon-input__input" placeholder=" " name="name"
+                                            data-request="Realms::onGetCity"
+                                            data-request-data="geoCity: '{{ __SELF__.data.yourCity.name }}'"
+                                            data-track-input="500"
+                                            autocomplete="off"
+                                        >
+                                        <span class="kuzon-input__placeholder">Введите название города</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="row ml-1" id="cities-list">
+
+                        {% partial '@cities_list' yourCity = __SELF__.data.yourCity %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

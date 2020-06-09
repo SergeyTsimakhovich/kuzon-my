@@ -1,0 +1,196 @@
+1.0.1:
+    - 'Initialize plugin.'
+1.0.2:
+    - 'Created table cds_study_sectors'
+    - builder_table_create_cds_study_sectors.php
+1.0.3:
+    - 'Created table cds_study_orgs'
+    - builder_table_create_cds_study_orgs.php
+1.0.4:
+    - 'Updated table cds_study_sectors'
+    - builder_table_update_cds_study_sectors.php
+1.0.5:
+    - 'Updated table cds_study_sectors'
+    - builder_table_update_cds_study_sectors_2.php
+1.0.6:
+    - 'Created table cds_study_tariffs'
+    - builder_table_create_cds_study_tariffs.php
+1.0.7:
+    - 'Created table cds_study_services'
+    - builder_table_create_cds_study_services.php
+1.0.8:
+    - 'Created table cds_study_org_services'
+    - builder_table_create_cds_study_org_services.php
+1.0.9:
+    - 'Created table cds_study_tariff_services'
+    - builder_table_create_cds_study_tariff_services.php
+1.0.10:
+    - 'Created table cds_study_programs'
+    - builder_table_create_cds_study_programs.php
+1.0.11:
+    - 'Updated table cds_study_orgs'
+    - builder_table_update_cds_study_orgs.php
+1.0.12:
+    - 'Created table cds_study_realms'
+    - builder_table_create_cds_study_realms.php
+1.0.13:
+    - 'Created table cds_study_user_orgs'
+    - builder_table_create_cds_study_user_orgs.php
+1.0.14:
+    - 'Updated table cds_study_orgs'
+    - builder_table_update_cds_study_orgs_2.php
+1.0.15:
+    - 'Updated table cds_study_orgs'
+    - builder_table_update_cds_study_orgs_3.php
+1.0.16:
+    - 'Create events table'
+    - create_events_table.php
+1.0.17:
+    - 'Create articles table'
+    - create_articles_table.php
+1.0.18:
+    - 'Create comments table'
+    - create_comments_table.php
+1.0.19:
+    - 'Append column to cds_study_events'
+    - update_events_table_18122019.php
+1.0.20:
+    - 'Append column to cds_study_articles'
+    - update_articles_table_18122019.php
+1.0.21:
+    - 'Append column to cds_study_articles'
+    - update_articles_table_181220191.php
+1.0.22:
+    - 'Append status column to cds_study_comments'
+    - update_comments_table_181220193.php
+1.0.23:
+    - 'Update comments table'
+    - update_comments_table_19122019.php
+1.0.24:
+    - 'Create tables for gallery'
+    - create_galleries_table.php
+    - create_gallery_files_table.php
+1.0.25:
+    - 'Update cds_study_gallery_files'
+    - update_gallery_files_table_20122019.php
+1.0.26:
+    - 'Update indexes on cds_study_articles_table'
+    - update_articles_table_20122019.php
+1.0.27:
+    - 'Append fields to '
+    - update_galleries_table_201220191.php
+1.0.28:
+    - 'Create banners table'
+    - create_banners_table.php
+1.0.29:
+    - 'Add fields link, new_window to banners'
+    - update_banner_table_20122019.php
+1.0.30:
+    - 'Add fields link_image to banners'
+    - update_banners_table_201220192.php
+1.0.31:
+    - 'Add table groups for banners'
+    - create_banner_groups_table.php
+1.0.32:
+    - 'Change banners table structure'
+    - update_table_banners_30122019.php
+1.0.33:
+    - 'Add table for Survey groups, Users survey answers, Qoute sectors, Object parameters'
+    - create_survey_groups_table.php
+    - create_surveys_table.php
+    - create_survey_answers_table.php
+    - create_survey_answer_users_table.php
+    - create_quote_sectors_table.php
+    - create_parameter_types_table.php
+    - create_parameters_table.php
+    - create_object_type_allows_table.php
+    - create_object_types_table.php
+    - create_object_values_table.php
+1.0.36:
+    - 'update sector_model'
+    - builder_table_update_cds_study_sectors3.php
+1.0.37:
+    - 'update sector_model'
+    - update_table_sectors_4.php
+1.0.38:
+    - 'create menus table'
+    - create_menus_table.php
+1.0.39:
+    - 'update menus table add [parent id, type_menu]'
+    - update_table_menus_2003191851.php
+1.0.40:
+    - 'update menus table change (string) type_menu'
+    - update_table_menus_200320143.php
+1.0.41:
+    - 'create user_action'
+    - create_user_actions_table.php
+1.0.42:
+    - 'update user_action'
+    - update_orgs_table.php
+1.0.43:
+    - 'update users table'
+    - update_table_users_2003201707.php
+1.0.44:
+    - 'create_user_types_table, create_stocks_table'
+    - create_user_types_table.php
+    - create_menu_user_types_table.php
+    - create_stocks_table.php
+1.0.45:
+    - 'create contact_person, create certificates '
+    - create_certificates_table.php
+    - create_contact_people_table.php
+1.0.46:
+    - 'create article_reviews'
+    - create_article_reviews_table.php
+1.0.47:
+    - 'update comments create_promocodes notifications tariff_cost_periods'
+    - update_comments_table_270320953.php
+    - create_notifications_table.php
+    - create_tariff_cost_periods_table.php
+1.0.48:
+    - 'create bills table'
+    - create_bills_table.php
+    - create_bill_properties_table.php
+1.0.52:
+    - 'inline tree'
+    - create_table_cds_study_inline_tree.php
+1.0.53:
+      - 'program formats'
+      - create_program_formats_table.php
+1.0.54:
+      - 'create_menu_types_table.php'
+      - create_menu_types_table.php
+1.0.55:
+    - 'create_menu_type_menus_table.php'
+    - create_menu_type_menus_table.php
+1.0.56:
+    - 'create_resumes_table.php'
+    - create_resumes_table.php
+1.0.57:
+    - 'create_survey_group_realms_table.php'
+    - create_survey_group_realms_table.php
+1.0.58:
+    - 'create_survey_group_sectors_table.php'
+    - create_survey_group_sectors_table.php
+1.0.59:
+    - 'create form_capture '
+    - create_form_captures_table.php
+    - create_form_capture_realms_table.php
+    - create_form_capture_sectors_table.php
+1.0.60:
+    - 'create form_capture user answer '
+    - create_form_capture_user_answers_table.php
+1.0.61:
+    - 'create feedback models'
+    - create_feedback_callmes_table.php
+    - create_feedback_form_captures_table.php
+    - create_feedback_program_requests_table.php
+1.0.62:
+    - 'create file extends for video links'
+    - create_files_table.php
+1.0.63:
+    - 'create abouts table'
+    - create_abouts_table.php
+1.0.65:
+    - 'create_sector_counters_table.php'
+    - create_sector_counters_table.php

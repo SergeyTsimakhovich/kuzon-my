@@ -1,0 +1,67 @@
+{{ form_ajax('onSignin', {class: 'kuzon-validation' , flash:true}) }}
+    <div class="lk-main-info__form-group kuzon-form-group kuzon-form-group--contact row">
+        <div class="col-11">
+            <div class="kuzon-form-group__items row">
+                <div class="kuzon-form-group__item col-12">
+                    <div class="kuzon-input">
+                        <input type="text" class="kuzon-input__input" placeholder=" " name="login" value="">
+                        <span class="kuzon-input__placeholder">Телефон или e-mail*</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="lk-main-info__form-group kuzon-form-group kuzon-form-group--noeye row">
+        <div class="col-11">
+            <div class="kuzon-form-group__items row">
+                <div class="kuzon-form-group__item col-12">
+                    <div class="kuzon-input">
+                        <input name="password" type="password" class="kuzon-input__input" placeholder=" ">
+                        <span class="kuzon-input__placeholder">Введите пароль*</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="kuzon-modal-actions">
+        <div class="kuzon-form-group__items row justify-content-between">
+
+        {% if __SELF__.properties.notModal == true %}
+            <button type="button" class="modal--js kuzon-btn kuzon-btn--view-3" data-toggle="modal" data-target="#modalContainer" data-modal-name="Account::Register">Регистрация</button>
+        {% else %}
+            <button type="button" class="modal--js kuzon-btn kuzon-btn--view-3" data-modal-name="Account::Register">Регистрация</button>
+        {% endif %}
+
+            <button type="submit" class="button button-type-2 button--enter">Войти
+                <svg class="button-enter-svg" width="15" height="11">
+                    <use xlink:href="#enter"></use>
+                </svg>
+            </button>
+        </div>
+
+
+        {% if __SELF__.data.rememberLoginMode == 'ask' %}
+            <div class="kuzon-form-group__items row justify-content-center">
+                <div class="kuzon-form-group__item">
+                    <label class="kuzon-checkbox">
+                        <input class="kuzon-checkbox__control" type="checkbox" name="remember" value="1">
+                        <span class="kuzon-checkbox__text">Запомнить меня</span>
+                        <span class="kuzon-checkbox__checkbox"></span>
+                    </label>
+                </div>
+            </div>
+            <div class="kuzon-form-group__items row justify-content-center">
+                <div class="kuzon-form-group__item">
+
+                {% if __SELF__.properties.notModal == true %}
+                    <a class="modal--js link" data-toggle="modal" data-target="#modalContainer" data-modal-name="Account::RecoveryPasswordEmail">Восстановление пароля</a>
+                {% else %}
+                    <a class="modal--js link" data-modal-name="Account::RecoveryPasswordEmail">Восстановление пароля</a>
+                {% endif %}
+
+                </div>
+            </div>
+        {% endif %}
+
+    </div>
+{{ form_close() }}

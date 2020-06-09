@@ -1,0 +1,74 @@
+{# представитель организации #}
+{% set agent = Session.user.agent ? 1 : 0 %}
+
+{# физ.лицо или юр.лицо #}
+{% set user_type = Session.user.type %}
+
+{% set notifyCount = Notifications.getNotifyCount()%}
+
+<div class="lk-mobileMenu d-block d-md-none {{ this.page.url == "/" ? 'is-main-page' : '' }}">
+    <div class="lk-mobileMenu__body">
+    <div class="lk-mobileMenu__head container">
+        <div class="d-flex  align-items-start">
+            <div class="">
+                <img
+                        src="{{ Session.user.getAvatarThumb(200, 'crop') }}"
+                        alt=""
+                >
+            </div>
+            <div class="px-3 mr-a mt-2">
+                <div class="lk-mobileMenu__head-collapsed align-items-center">
+                    Профиль
+                </div>
+                <div class="lk-mobileMenu__head-open">
+                    <p class="lk-mobileMenu-name">{{ Session.user.fullname }}</p>
+                    <p class="lk-mobileMenu-descr">
+                        {% if agent %}
+                            {% if user_type == 2 %}
+                                {{ Session.user.name_org }}
+                            {% else %}
+                                Контактное лицо
+                            {% endif %}
+                        {% endif %}
+                    </p>
+                </div>
+            </div>
+            <div class="align-self-start">
+                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="6" viewBox="0 0 10 6" fill="none">
+                    <path
+                            d="M1.28132 0.4375H8.71882C9.38757 0.4375 9.72194 1.19629 9.25007 1.63867L5.53132 5.125C5.23757 5.40039 4.76257 5.40039 4.47194 5.125L0.750069 1.63867C0.278194 1.19629 0.612569 0.4375 1.28132 0.4375Z"
+                            fill="#828282"
+                    />
+                </svg>
+            </div>
+        </div>
+    </div>
+
+        <div class="container scrol-area">
+            <ul class="lk-mobileMenu__list">
+
+                {% for item in __SELF__.data.menus %}
+                {# если ты Представитель организации и твой тип пользователя совпадает с разрешенным в пункте меню то показываем #}
+                {% if agent >= item.agent_only and user_type in item.user_types %}
+                    <li class="lk-mobileMenu__list-item">
+                        <a href="{{ item.slug|app }}"
+                           title="{{ item.seo_description }}"
+                           class="lk-mobileMenu__link {{ item.slug in __SELF__.properties.slug ? 'lk-mobileMenu__link--active' : '' }}">
+                            {{ item.title }}
+                            {% if item.custom_data == 'notify' and notifyCount > 0 %}
+                                <span class="badge badge-pill badge-danger" id="countNotificationsMenu">
+                                        ({% placeholder count default %}
+                                        {{ notifyCount }}
+                                    {% endplaceholder %})
+                                    </span>
+                            {% endif %}
+                        </a>
+                    </li>
+                {% endif %}
+                {% endfor %}
+
+
+            </ul>
+        </div>
+    </div>
+</div>

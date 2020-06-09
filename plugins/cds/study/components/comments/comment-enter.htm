@@ -1,0 +1,46 @@
+{% set user = Session.user %}
+{% set commemtBody = parent_id ? parent_id : random(666,999) %}
+
+{{ form_ajax('onAddComment', { flash:true, success:"document.getElementById('commentBody-"~commemtBody~"').value = ''; ", class:"comment-enter" }) }}
+
+    <div class="comment-enter__textarea-wrap">
+        <textarea name="body" id="commentBody-{{ commemtBody }}" placeholder="{{ placeholder ?? 'Напишите комментарий' }}" class="comment-enter__textarea"></textarea>
+    </div>
+    <div class="comment-enter__footer">
+        <div class="comment-enter__group">
+            {% if not user %}
+                <button type="button" class="comment-enter__login kuzon-btn kuzon-btn--view-3 modal--js"
+                        data-toggle="modal"
+                        data-target="#modalContainer"
+                        data-modal-name="Account::Signin">
+                    <span class="comment-enter__login-text">Войти</span>
+                </button>
+                <input type="text" name="guest_name" placeholder="Или указать имя" class="comment-enter__input" value="{{ guest_name }}" required>
+            {% else %}
+                <input type="hidden" name="user_id" value="{{ user.id }}">
+            {% endif %}
+        </div>
+        <div class="comment-enter__group" style="flex-grow: 1;">
+            <div class="comment-enter__marks">
+                {% if not parent_id and object_type == 'Organization' %}
+                    {% partial '@org_rates' %}
+                {% endif %}
+            </div>
+            <button class="comment-enter__send">
+                {% content "send-icon.htm" %}
+            </button>
+        </div>
+        
+        
+
+        
+    </div>
+
+    {% if parent_id %}
+        <input type="hidden" name="parent_id" value="{{ parent_id }}">
+    {% endif %}
+
+    <input type="hidden" name="object_type" value="{{ object_type }}">
+    <input type="hidden" name="object_id" value="{{ object_id }}">
+</form>
+{{ form_close() }}

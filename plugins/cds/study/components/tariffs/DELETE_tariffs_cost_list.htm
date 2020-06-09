@@ -1,0 +1,18 @@
+{% set tariffsList = __SELF__.data.tariffsList ?? tariffsList %}
+
+<div class="row">
+    {% for item in tariffsList %}
+        {% set cost_period = item.costs_periods.first %}
+        <div class="col-12 col-md-3">
+            {% if cost_period.cost %}
+                <h4>{{ cost_period.cost }} <br> рублей</h4>
+            {% endif %}
+            <br>
+            {% if cost_period.discount > 0 %}
+                <span style="color: #008000;">Экономия</span> <br> <span style="color: #008000;">{{ cost_period.discount ~' %' }}</span>
+            {% endif %}
+
+        </div>
+    {% endfor %}
+</div>
+

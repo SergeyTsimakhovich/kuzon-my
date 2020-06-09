@@ -1,0 +1,321 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+    <style type="text/css">
+        * {
+            /*font-family: arial;*/
+            font-size: 14px;
+            line-height: 14px;
+        }
+        table {
+            margin: 0 0 15px 0;
+            width: 100%;
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+        table td {
+            padding: 5px;
+        }
+        table th {
+            padding: 5px;
+            font-weight: bold;
+        }
+
+        .header {
+            margin: 0 0 0 0;
+            padding: 0 0 5px 0;
+            font-size: 12px;
+            line-height: 12px;
+            text-align: center;
+            color: red;
+        }
+
+        /* Реквизиты банка */
+        .details td {
+            padding: 3px 2px;
+            border: 1px solid #000000;
+            font-size: 12px;
+            line-height: 12px;
+            vertical-align: top;
+        }
+
+        h1 {
+            margin: 0 0 10px 0;
+            padding: 5px 0 5px 0;
+            border-bottom: 2px solid #000;
+            font-weight: bold;
+            font-size: 15px;
+        }
+
+        /* Поставщик/Покупатель */
+        .contract th {
+            padding: 3px 0;
+            vertical-align: top;
+            text-align: left;
+            font-size: 12px;
+            line-height: 15px;
+        }
+        .contract td {
+            padding: 3px 0;
+        }
+
+        /* Наименование товара, работ, услуг */
+        .list thead, .list tbody  {
+            border: 2px solid #000;
+        }
+        .list thead th {
+            padding: 4px 0;
+            border: 1px solid #000;
+            vertical-align: middle;
+            text-align: center;
+        }
+        .list tbody td {
+            padding: 0 2px;
+            border: 1px solid #000;
+            vertical-align: middle;
+            font-size: 10px;
+            line-height: 13px;
+        }
+        .list tfoot th {
+            padding: 3px 2px;
+            border: none;
+            text-align: right;
+        }
+
+        /* Сумма */
+        .total {
+            margin: 0 0 5px 0;
+            padding: 0 0 5px 0;
+            border-bottom: 2px solid #000;
+        }
+        .total p {
+            margin: 0;
+            padding: 0;
+        }
+
+        .rules p {
+            margin: 0;
+            padding: 0;
+            font-size: 10px;
+            text-indent: 20px;
+        }
+
+        .rules {
+            margin-bottom: 21px;
+        }
+
+        /* Руководитель, бухгалтер */
+        .sign {
+            position: relative;
+            padding: 0;
+            margin: 0;
+        }
+        .sign table {
+            width: 100%;
+            border-spacing: 35px 0;
+            border-collapse: separate;
+            margin: 0;
+            padding: 0;
+        }
+        .sign th {
+            padding: 12px 0 0 0;
+            text-align: left;
+        }
+        .sign .th_add {
+            text-align: center;
+            padding: 0;
+            margin: 0;
+            vertical-align: top;
+            font-weight: normal;
+            font-size: 10px;
+        }
+        .sign tr {
+            padding: 0;
+        }
+        .sign td {
+            padding: 20px 0 0 0;
+            border-bottom: 1px solid #000;
+            text-align: right;
+            font-size: 12px;
+        }
+
+        .sign-1 {
+            position: absolute;
+            left: 289px;
+            top: -105px;
+        }
+        .sign-2 {
+            position: absolute;
+            left: 289px;
+            top: -45px;
+        }
+        .sign-3 {
+            position: absolute;
+            left: 386px;
+            top: -28px;
+        }
+        .printing {
+            position: absolute;
+            left: 271px;
+            top: -15px;
+        }
+    </style>
+</head>
+<body>
+
+<p class="header">
+    Просим в назначении платежа указывать: «Оплата по счету-оферте №{{ data.id }} от {{ data.createdAtView }}
+</p>
+
+<table class="details">
+    <tbody>
+    <tr>
+        <td colspan="2" style="border-bottom: none;">ФИЛИАЛ "Екатеринбургский" ОАО "Альфа-Банк"</td>
+        <td>БИК</td>
+        <td style="border-bottom: none;">046577964</td>
+    </tr>
+    <tr>
+        <td colspan="2" style="border-top: none; font-size: 10px;">Банк получателя</td>
+        <td>Сч. №</td>
+        <td style="border-top: none;">30101810100000000964</td>
+    </tr>
+    <tr>
+        <td width="25%">ИНН 7203494414</td>
+        <td width="30%">КПП 720301001</td>
+        <td width="10%" rowspan="3">Сч. №</td>
+        <td width="35%" rowspan="3">40702810038290000000</td>
+    </tr>
+    <tr>
+        <td colspan="2" style="border-bottom: none;">ООО "СЛОН"</td>
+    </tr>
+    <tr>
+        <td colspan="2" style="border-top: none; font-size: 10px;">Получатель</td>
+    </tr>
+    </tbody>
+</table>
+
+<h1>Счет на оплату №{{ data.id }} от {{ data.createdAtView }}</h1>
+
+<table class="contract">
+    <tbody>
+    <tr>
+        <td width="15%">Поставщик:</td>
+        <th width="85%">
+            ООО "СЛОН", ИНН 7203494414, КПП 720301001, 625018, Тюмень г,
+            Кремлевская ул, дом №112, корпус №3, кв. 70
+        </th>
+    </tr>
+    <tr>
+        <td>Покупатель:</td>
+        <th>
+            {{ data.prop.name_organization }}, ИНН {{ data.prop.inn }}, КПП {{ data.prop.kpp }}
+        </th>
+    </tr>
+    </tbody>
+</table>
+
+<table class="list">
+    <thead>
+    <tr>
+        <th width="5%">№</th>
+        <th width="44%">Наименование товара, работ, услуг</th>
+        <th width="8%" style="padding: 5px 5px 5px 5px;">Коли-<br>чество</th>
+        <th width="5%" style="padding: 5px 5px 5px 5px;">Ед.<br>изм.</th>
+        <th width="19%">Цена, руб</th>
+        <th width="19%">Сумма, руб</th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td align="center">1/АС</td>
+            <td align="left">Тариф: "{{ data.tariff.name }}" <br> Срок действия: {{ data.dateActive }}</td>
+            <td align="center">1</td>
+            <td align="center">ед.</td>
+            <td align="right">{{ data.costFormated|raw }}</td>
+            <td align="right">{{ data.costFormated|raw }}</td>
+        </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+        <th colspan="5">Итого:</th>
+        <th>{{ data.costFormated|raw }}</th>
+    </tr>
+    <tr>
+        <th colspan="5">В том числе НДС:</th>
+        <th>{{ data.costNdsFormated|raw }}</th>
+    </tr>
+    <tr>
+        <th colspan="5">Всего к оплате:</th>
+        <th>{{ data.costFormated|raw }}</th>
+    </tr>
+
+    </tfoot>
+</table>
+
+<div class="total">
+    <p>Всего наименований 1, на сумму {{ data.costFormated|raw }} руб.</p>
+    <p><strong>{{ data.costStr }}</strong></p>
+</div>
+
+<div class="rules">
+    <p>
+        Настоящий счет-оферта (далее – «Счет») является письменным предложением (офертой) Исполнителя заключить Договор, который направляется Заказчику в соответствии со ст. ст. 432 - 444 ГК РФ. Договор заключается путем принятия (акцепта) оферты Заказчиком в установленном порядке (п. 3ст. 438 ГК РФ), что считается соблюдением письменной формы договора (п. 3 ст. 434 ГК РФ).
+    </p>
+    <p>Условия оферты:</p>
+    <p>
+        1. Предметом Договора является осуществление Исполнителем поставки услуг, указанных в Счете.
+    </p>
+    <p>
+        2. Вознаграждением Исполнителя по Договору является сумма, указанная в Счете.
+    </p>
+    <p>
+        3. Существенным условием заключения Договора является полная единовременная оплата Заказчиком настоящего Счета, которая будет считаться единственно возможным надлежащим акцептом данной оферты (п. 3 ст. 438 ГК РФ).
+    </p>
+    <p>
+        4. Счет действителен в течение 7 (семи) рабочих дней с указанной в нем даты выставления (срок для акцепта оферты).
+    </p>
+    <p>
+        5. По окончанию работ Исполнитель составляет в электронном виде и отправляет Заказчику на электронную почту, указанную в реквизитах Заказчика данного счета-оферты соответствующий Акт. В случае, если направленный Акт не подписан Заказчиком и/или второй его экземпляр не возвращен Исполнителю, а письменные мотивированные возражения со стороны Заказчика не получены Исполнителем в течении 3 (трех) рабочих дней, Акт считается утверждённым Заказчиком, услуги по данному договору счет-оферты оказанными в полном объеме, а Заказчик не имеет претензий.
+    </p>
+    <p>
+        6. Осуществление услуги по настоящему Договору осуществляется в срок до 5 (пяти) рабочих дней с момента оплаты настоящего Счета.
+    </p>
+    <p>
+        7. Любые споры, которые могут возникнуть между Поставщиком и Покупателем в связи с настоящей офертой и/или договором, подлежат рассмотрению по месту нахождения Поставщика."
+    </p>
+</div>
+
+<div class="sign">
+
+    <img class="sign-1" src="{{ 'assets/img/signmark/sign.png'|theme }}">
+    <img class="sign-2" src="{{ 'assets/img/signmark/sign.png'|theme }}">
+    <img class="sign-3" src="{{ 'assets/img/signmark/mark.png'|theme }}">
+
+    <table>
+        <tbody>
+        <tr>
+            <th width="40%">Руководитель предприятия</th>
+            <td></td>
+            <td style="text-align: center">Ильченко С.А.</td>
+        </tr>
+        <tr>
+            <th width="40%"></th>
+            <th class="th_add">подпись</th>
+            <th class="th_add">расшифровка подписи</th>
+        </tr>
+        <tr>
+            <th>Главный бухгалтер</th>
+            <td></td>
+            <td style="text-align: center">Ильченко С.А.</td>
+        </tr>
+        <tr>
+            <th width="40%"></th>
+            <th class="th_add">подпись</th>
+            <th class="th_add">расшифровка подписи</th>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

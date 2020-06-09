@@ -1,0 +1,51 @@
+{% set data = item.getText() %}
+
+{% if data.status_text %}
+<div class="notif-list__item">
+    <div class="kuzon-notif kuzon-notif--status-{{ data.class }}">
+        <div class="kuzon-notif__status"></div>
+        <div class="kuzon-notif__main">
+            <div class="kuzon-notif__header">
+                {% if data.author_name %}
+                    <div class="kuzon-notif__user kuzon-notif__user-name">
+                        <img src="{{ data.author_avatar }}" alt="Пользователь: {{ data.author_name }}" class="kuzon-notif__user-avatar">
+                        {{ str_limit(data.author_name,30,'...') }}
+                    </div>
+                {% endif %}
+                <span class="kuzon-notif__status">{{ data.status_text }}</span>
+            </div>
+            <div class="kuzon-notif__content">
+                {% if data.error %}
+                    <span class="kuzon-notif__status">{{ data.content }}</span>
+                {% else %}
+                <a href="{{ data.link|app }}" class="kuzon-notif__link kuzon-notif__content-item">
+                    {% if data.org_info %}
+                        <h4 class="kuzon-notif__title kuzon-notif__content-item">
+                            {{ data.content }}
+                        </h4>
+                    {% else %}
+                        {% if data.content %}
+                            <p class="kuzon-notif__link kuzon-notif__content-item">
+                                "{{ str_limit(data.content, 183) }}"
+                            </p>
+                        {% endif %}
+                    {% endif %}
+                </a>
+                {% endif %}
+            </div>
+            <div class="kuzon-notif__footer">
+                <div class="kuzon-notif__info">
+                    {% if data.org_info %}
+                        <div class="kuzon-notif__info-item">
+                            <div class="info-block info-block--locate">{{ data.org_info }}</div>
+                        </div>
+                    {% endif %}
+                    <div class="kuzon-notif__info-item">
+                        <div class="info-block info-block--time">{{ item.createdAtView }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}

@@ -1,0 +1,5 @@
+{% for item in data %}
+    {% partial '@card' item=item %}
+{% else %}
+    <h3 class="lk-favor__title title-4">У Вас отсутствует история уведомлений</h3>
+{% endfor %}

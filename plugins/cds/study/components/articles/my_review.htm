@@ -1,0 +1,37 @@
+{# если у текущего пользователя есть отзыв, значит блокируем ему все кнопки #}
+{% set review = not review is empty ? (review.status ? 1 : -1) : '' %}
+
+{% set disabled = review ? 'disabled' : '' %}
+{% set checkedLike    = disabled and review > 0 ? 'checked' : '' %}
+{% set checkedDislike = disabled and review < 0 ? 'checked' : '' %}
+
+<span class="detail__like-title">Полезная статья?</span>
+
+<div class="detail__like-rating detail__like-rating--like">
+    <label>
+        <input class="hide" type="radio" name="detail-rating"
+               data-request="{{ __SELF__ }}::onHelpfulAsk"
+               data-request-data="status: '1', article_id: {{  __SELF__ .data.id }}"
+               data-request-flash {{ checkedLike }} {{ disabled }}>
+        {% content "rating-icon.htm" %}
+    </label>
+</div>
+
+<div class="detail__like-rating detail__like-rating--dislike">
+    <label>
+        {% if not disabled %}
+        <a class="modal--js"
+           data-toggle="modal"
+           data-target="#modalContainer"
+           data-modal-name="{{ __SELF__ }}::HelpfulAsk"
+           data-modal-param="article_id: {{  __SELF__ .data.id }}"
+        >
+            <input class="hide" type="radio" name="detail-rating" {{ checkedDislike }} {{ disabled }}>
+            {% content "rating-icon.htm" %}
+        </a>
+        {% else %}
+            <input class="hide" type="radio" name="detail-rating" {{ checkedDislike }} {{ disabled }}>
+            {% content "rating-icon.htm" %}
+        {% endif %}
+    </label>
+</div>

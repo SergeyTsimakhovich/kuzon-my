@@ -1,0 +1,37 @@
+
+<section class="page-link">
+{% set data = __SELF__.data %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12 offset-xl-1 col-xl-10">
+
+                <ul class="page-link__items">
+
+                    <li>
+                        <a class="page-link__item page-link__item--lk" href="{{ '/'|app }}">Главная страница
+                            <svg class="icon button-icon--left" width="9" height="6">
+                                <use xlink:href="#arrow-search"></use>
+                            </svg>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="page-link__item page-link__item--lk" href="{{ data.organization.link|app }}">{{ data.organization.name }}
+                            <svg class="icon button-icon--left" width="9" height="6">
+                                <use xlink:href="#arrow-search"></use>
+                            </svg>
+                        </a>
+                    </li>
+
+                    <li>
+                        <span class="page-link__item page-link__item--lk">
+                            {{ data.name }}
+                        </span>
+                    </li>
+
+                </ul>
+
+            </div>
+        </div>
+    </div>
+</section>

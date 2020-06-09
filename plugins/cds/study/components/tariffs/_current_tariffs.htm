@@ -1,0 +1,28 @@
+{% set currentTariffsList = __SELF__.data.currentTariffsList ?? currentTariffsList %}
+{% set historyTariffsList = __SELF__.data.historyTariffsList ?? historyTariffsList %}
+
+
+<div class="rate-list__body">
+    <div class="rate-list__navtab">
+        <div data-tab="1" class="rate-list__navtab-item rate-list__navtab-item_active">Активные</div>
+        <div data-tab="2" class="rate-list__navtab-item">Завершенные</div>
+    </div>
+    <div class="rate-list__tab">
+
+        <div data-tab="1" class="rate-list__tab-item rate-list__tab-item_active" id="current_tariffs_list">
+
+            {% partial '@current_tariff_card' tariffsList = currentTariffsList status = 'current' %}
+            
+        </div>
+
+        <div data-tab="2" class="rate-list__tab-item">
+
+            {% partial '@current_tariff_card' tariffsList = historyTariffsList status = 'history' %}
+
+        </div>
+
+    </div>
+</div>
+
+
+

@@ -1,0 +1,40 @@
+<div class="lk-main-info__form-group kuzon-form-group lk-main-info__form-group row">
+    <div class="col-11">
+        <div class="kuzon-form-group__items row">
+            <div class="kuzon-form-group__item col-12">
+
+                <h3 class="lk-main-info__title title-3">Документы</h3>
+
+                    <p class="search-result__description">Формат для загрузки: DOC, PDF, JPG, PNG не более 15 мб.</p>
+
+                <div class="myDropzone" data-input-name='documents'>
+                    <div class="previews-wrapper dropzone-previews row">
+                        <div class="drag-n-drop-place col-3 order-1 align-content-center justify-content-center flex-column">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="25" viewBox="0 0 32 25" fill="none">
+                                <path d="M15.2588 8.22754C15.0293 7.99805 14.6582 7.99805 14.4287 8.22754L9.62891 13.0273C9.39941 13.2568 9.39941 13.6279 9.62891 13.8574L9.90723 14.1357C10.1367 14.3652 10.5078 14.3652 10.7373 14.1357L14.0674 10.8057V18.1641C14.0674 18.4863 14.3311 18.75 14.6533 18.75H15.0439C15.3662 18.75 15.6299 18.4863 15.6299 18.1641V10.8057L18.96 14.1357C19.1895 14.3652 19.5605 14.3652 19.79 14.1357L20.0684 13.8574C20.2979 13.6279 20.2979 13.2568 20.0684 13.0273L15.2588 8.22754ZM27.915 11.6602C28.0518 11.1768 28.125 10.6738 28.125 10.1562C28.125 7.13379 25.6787 4.6875 22.6562 4.6875C21.8408 4.6875 21.0498 4.86328 20.3125 5.21484C18.7695 3.01758 16.1963 1.5625 13.2812 1.5625C8.67188 1.5625 4.89746 5.2002 4.69727 9.77539C1.91406 10.752 0 13.3936 0 16.4062C0 20.293 3.14453 23.4375 7.03125 23.4375H25C28.4521 23.4375 31.25 20.6445 31.25 17.1875C31.25 14.8926 29.9902 12.7539 27.915 11.6602ZM25 21.875H7.03125C4.00879 21.875 1.5625 19.4287 1.5625 16.4062C1.5625 13.6328 3.62305 11.3428 6.29883 10.9863C6.26465 10.7129 6.25 10.4346 6.25 10.1562C6.25 6.27441 9.39941 3.125 13.2812 3.125C16.2256 3.125 18.7451 4.93164 19.7949 7.5C20.5078 6.7334 21.5234 6.25 22.6562 6.25C24.8145 6.25 26.5625 7.99805 26.5625 10.1562C26.5625 11.0596 26.2549 11.8945 25.7373 12.5586C27.9785 12.9102 29.6875 14.8486 29.6875 17.1875C29.6875 19.7754 27.5879 21.875 25 21.875Z" fill="#DDD8D8"></path>
+                            </svg>
+                            <div>Загрузите файлы</div>
+                        </div>
+                    </div>
+                    <div class="server-images">
+                        {% for document in data.user.resume.documents %}
+                            <input type="hidden" name="documents[]" value="{{ document.id }}" data-src="{{ document.getFileImg|theme }}" data-name='{{ document.file_name }}'>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                {# <div class="kuzon-input">
+                    <h4 for="document">Документы</h4>
+                    {% for item in data.user.resume.documents %}
+                        <div id="doc-{{ item.id }}">
+                            <a href="{{ item.path }}" >{{ item.file_name }}</a>
+                            <a data-request="Resumes::onDelete" data-request-data="id: {{ item.id }}" data-request-flash
+                               class="lk-main-info__save kuzon-btn kuzon-btn--view-3"> удалить </a>
+                            <hr>
+                        </div>
+                    {% endfor %}
+                </div> #}
+            </div>
+        </div>
+    </div>
+</div>

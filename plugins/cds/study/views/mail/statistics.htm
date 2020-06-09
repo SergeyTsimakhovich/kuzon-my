@@ -1,0 +1,99 @@
+subject = "Отчет по вашей странице на KUZON.RU"
+==
+
+==
+
+<div class="user-text">
+    <p>Спасибо за использование сервиса <a href="{{ '/' | app }}" class="link">KUZON.RU</a></p>
+
+    <p>Здравствуйте, пожалуйста, ознакомьтесь с ежемесячным отчётом по целевым действиям</p>
+    <p>пользователей <a href="{{ '/lk/statistics' | app }}" class="link">на вашей странице на сайте KUZON.RU.</a></p>
+    <p>Для повышения активности пользователей вы можете <a href="{{ '/lk/organizations' | app }}" class="link">добавлять и актуализировать программы обучения</a>,
+        анонсировать проводимые мероприятия и регулярно запускать промо-акции.</p>
+    <p>Для увеличения активности пользователей и повышения эффективности Вашей страницы рекомендуем <a href="{{ '/lk/tariffs' | app }}" class="link">попробовать тариф Бизнес+.</a></p>
+    <p>Оставайтесь с нами и вместе мы сделаем мир лучше.</p>
+    <p>С уважением, команда KUZON.RU</p>
+</div>
+
+
+<table class="kuzon-table kuzon-table--statistics">
+    <tr class="kuzon-table__tr">
+        <th class="kuzon-table__td kuzon-table__th">ПОКАЗАТЕЛИ</th>
+        <th class="kuzon-table__td kuzon-table__th">КОЛИЧЕСТВО</th>
+        <th class="kuzon-table__td kuzon-table__th">КАТЕГОРИИ</th>
+    </tr>
+    {% for row in data %}
+        <tr class="kuzon-table__tr">
+            <td class="kuzon-table__td">{{ row[0] }}</th>
+            <td class="kuzon-table__td">{{ row[1] }}</th>
+            <td class="kuzon-table__td">{{ row[2] }}</th>
+        </tr>
+    {% endfor %}
+</table>
+
+
+<style type="text/css">
+    .link {
+        display: inline-block;
+        cursor: pointer;
+        font-size: 14px;
+        line-height: 100%;
+        position: relative;
+        font-weight: 300;
+        color: #e3682a;
+        border: none;
+        padding: 0;
+        transition: all 0.3s;
+    }
+    .link:hover {
+        text-decoration: none;
+    }
+
+    .user-text p {
+        font-style: normal;
+        font-weight: 300;
+        font-size: 16px;
+        line-height: 120%;
+        font-family: "Roboto", sans-serif;
+        margin-bottom: 20px;
+        color: #234D60;
+    }
+
+    .kuzon-table {
+        font-family: "Roboto";
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 100%;
+        width: 100%;
+        color: #234D60;
+    }
+    .kuzon-table--statistics .kuzon-table__th:last-child {
+        text-align: left;
+    }
+    .kuzon-table--statistics .kuzon-table__td {
+        text-align: right;
+    }
+    .kuzon-table--statistics .kuzon-table__td:last-child {
+        text-align: left;
+    }
+    .kuzon-table--statistics .kuzon-table__td:first-child {
+        text-transform: uppercase;
+    }
+    .kuzon-table__tr:nth-child(2n+1) {
+        background-color: #fff;
+    }
+    .kuzon-table--programs .kuzon-table__tr:nth-child(2n+1) {
+        background: none;
+    }
+    .kuzon-table__th {
+        color: #828282;
+        text-align: right;
+    }
+    .kuzon-table__td {
+        padding-top: 18px;
+        padding-bottom: 18px;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+</style>

@@ -1,0 +1,4 @@
+{% if __SELF__.data is not empty %} 
+Искать по 
+<a class="link popular__link" data-request="{{ __SELF__ }}::onSetCity" data-request-data="id: {{ __SELF__.data.id }}">{{ __SELF__.data.name }}</a>
+{% endif %}

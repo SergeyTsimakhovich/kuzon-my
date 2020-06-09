@@ -1,0 +1,105 @@
+{% set data = __SELF__.data.surveyGroup %}
+{% set sectorId = __SELF__.data.sectorId %}
+
+<section class="feedback modal-bdrad">
+    <div class="poll__block modal-bdrad">
+        <div class="container">
+                <button class="close" type="button" data-dismiss="modal"
+{#                    data-request="Surveys::onMakeAnswer"#}
+{#                    data-request-data="survey_group_id: {{ data.id }}, sector_id: {{ sectorId }}, is_closed: 1"#}
+                        >
+                <div class="close-fix"></div>
+                
+            </button>
+
+            <div class="modal-body">
+                <div class="container">
+                    <form class="poll__form">
+                        <div class="lk-main-info__form-group kuzon-form-group row">
+                            <div class="col-11">
+                                <div class="kuzon-form-group__items row">
+                                    <div class="kuzon-form-group__item col-12 col-md-12  tab-conten">
+                                        <input type="hidden" name="survey_group_id" value="{{ data.id }}">
+                                        <input type="hidden" name="sector_id" value="{{ sectorId }}">
+                                        {% for index, survey in data.surveys %}
+                                            <input type="hidden" name="survey_id[{{ index }}]" value="{{ survey.id }}">
+                                        <div class="kuzon-input poll__pane tab-pane {{ loop.first ? 'active' }}" id="tab{{ survey.id }}" >
+                                            <div class="poll__text col-11"> {{ survey.name }} </div>
+                                            <select class="custom-select-default selectized" name="survey_answer_id[{{ index }}]" tabindex="-1" style="display: none;">
+                                                {% for answer in survey.answers %}
+                                                <option value="{{ answer.id  }}" {{ loop.first ? 'selected' : '' }}> {{ answer.name }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                        {% endfor %}
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="poll__dots nav nav-tabs row justify-content-center">
+
+                        {% for survey in data.surveys %}
+                            <span class="nav-item nav-link poll__dots-item {{ loop.first ? 'active' : '' }}" data-toggle="tab" data-target="#tab{{ survey.id }}"></span>
+                        {% endfor %}
+
+                        </div>
+                        <div class="kuzon-modal-actions ">
+                            <div class="kuzon-form-group__items row justify-content-center">
+                                <button type="button" class="button button--orange button--orange-solid poll__next">Следующий</button>
+                                <button type="button" class="button button--orange button--orange-solid poll__submit" data-dismiss="modal">Закончить</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    (function(){
+        let tabs = $(".poll__dots .poll__dots-item")
+        let next = $(".poll__next")
+        let submit = $(".poll__submit")
+        let count = tabs.length -1
+        let modal = $('#modalContainer')
+        let close = modal.find("button.close")
+        let i = 0
+
+        close.click(function() {
+            $(".poll__form").append("<input type='hidden' name='is_closed' value=1>")
+        })
+        
+
+        function btnToogle() {
+            if (i < count) {
+                next.show()
+                submit.hide()
+            } else {
+                next.hide()
+                submit.show()
+            }
+        }
+
+        next.on("click" , function() {
+            tabs.eq(++i).tab("show")
+            btnToogle()
+        })
+        tabs.on('shown.bs.tab', function (e) {
+            i = $(this).index() 
+            btnToogle()
+        })
+    })()
+    
+
+</script>
+
+{# <a href=""
+    data-request="{{ __SELF__ }}::onMakeAnswer"
+    data-request-data="survey_group_id: {{ data.id }},
+                    survey_answer_id: {{ answer.id }},
+                    survey_id: {{ survey.id }},
+                    sector_id: {{ sector_id }}"
+>{{ answer.name }}</a> #}
+

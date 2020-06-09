@@ -1,0 +1,73 @@
+{% set cities = __SELF__.data.cities ?? cities %}
+{% set countCol = (cities|length + 9) // 10  %}
+{% set isYourCity = yourCity ? 1 : 0 %}
+
+{% if yourCity is empty and not search %}
+    <ul class="col-sm-12 mb-2">
+        <li class="city__item">Вашего города нет в нашей базе, введите название ближайшего крупного города</li>
+    </ul>
+{% endif %}
+
+{% if cities is not empty %}
+    {% for step in range(1, countCol) %}
+    <ul class="col-6 col-sm-6 col-lg-{{ countCol < 3 ? '6' : '3' }} mb-1">
+        {% if yourCity is not empty and loop.first %}
+        <li class="footer__item mb-2">
+            <a class="city__item" href="" data-request="{{ __SELF__ }}::onSetCity" data-request-data="id: {{ yourCity.id }}">
+                {{ yourCity.name }}*
+            </a>
+        </li>
+        {% endif %}
+        {% for index, item in cities %}
+            {% if index + isYourCity >= (step * 10) - 10 and index + isYourCity <= (step * 10) + - 1 %}
+            <li class="footer__item mb-2" style="word-break: break-word">
+                <a class="city__item" href="{{ '//' ~ item.host }}" data-request="{{ __SELF__  }}::onSetCity" data-request-data="id: {{ item.id }}">
+                    {% if item.sort > 1 %}
+                        <strong>{{ item.name }}</strong>
+                    {% else %}
+                        {{ item.name }}
+                    {% endif %}
+                </a>
+            </li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+    {% endfor %}
+{% else %}
+<ul class="col-sm-12 mb-2">
+    <li class="city__item">Совпадений не найдено</li>
+</ul>
+{% endif %}
+
+{# <div class="row"> #}
+    {# {% if not search %}
+        {% if yourCity is not empty %}
+            <div class="col-6 col-sm-4 col-lg-3 mb-2">
+                <a class="city__item" href="" data-request="{{ __SELF__ }}::onSetCity" data-request-data="id: {{ yourCity.id }}">
+                    {{ yourCity.name }}*
+                </a>
+            </div>
+        {% else %}
+            <div class="col-sm-12 mb-2">
+                <span class="city__item">Вашего города нет в нашей базе, введите название ближайшего крупного города</span>
+            </div>
+        {% endif %}
+    {% endif %}
+
+    {% for item in cities %}
+        <div class="col-6 col-sm-4 col-lg-3 mb-2">
+            <a class="city__item" href="" data-request="{{ __SELF__ }}::onSetCity" data-request-data="id: {{ item.id }}">
+                {% if item.sort > 1 %}
+                    <strong>{{ item.name }}</strong>
+                {% else %}
+                    {{ item.name }}
+                {% endif %}
+            </a>
+        </div>
+    {% else %}
+        <div class="col-sm-12">
+            <span class="city__item">Совпадений не найдено</span>
+        </div>
+    {% endfor %} #}
+
+{# </div> #}

@@ -1,0 +1,73 @@
+
+{#{% if __SELF__.data.surveyGroup %}#}
+{#    <button class="modal--js survey-modal" style="display: none;"#}
+{#            data-toggle="modal"#}
+{#            data-target="#modalContainer"#}
+{#            data-modal-name="{{ __SELF__ }}::Survey"#}
+{#            data-modal-param="sector_id: {{ __SELF__.data.sectorId }}, survey_group_id: {{ __SELF__.data.surveyGroup.id }}">#}
+{#    </button>#}
+{#{% endif %}#}
+
+{% set data = __SELF__.data.surveyGroup %}
+{% set sectorId = __SELF__.data.sectorId %}
+{% set objectName = __SELF__.data.objectName %}
+
+{% if data is not empty %}
+<div class="kuzon-modal">
+    <div class="poll__block poll__modal modal-bdrad ">
+        <div class="container">
+            <button class="close" type="button"
+                    {#                    data-request="Surveys::onMakeAnswer"#}
+                    {#                    data-request-data="survey_group_id: {{ data.id }}, sector_id: {{ sectorId }}, is_closed: 1"#}
+            >
+                <div class="close-fix"></div>
+    
+            </button>
+    
+            <div class="modal-body">
+                <div class="container">
+                    <form class="poll__form">
+                        <div class="lk-main-info__form-group kuzon-form-group row">
+                            <div class="col-11">
+                                <div class="kuzon-form-group__items row">
+                                    <div class="kuzon-form-group__item col-12 col-md-12  tab-conten">
+                                        <input type="hidden" name="survey_group_id" value="{{ data.id }}">
+                                        <input type="hidden" name="sector_id" value="{{ sectorId }}">
+                                        <input type="hidden" name="page_title" value="{{ objectName }}">
+                                        {% for index, survey in data.surveys %}
+                                            <input type="hidden" name="survey_id[{{ index }}]" value="{{ survey.id }}">
+                                            <div class="kuzon-input poll__pane tab-pane {{ loop.first ? 'active' }}" id="tab{{ survey.id }}" >
+                                                <div class="poll__text col-11"> {{ survey.name }} </div>
+                                                <select class="custom-select-default selectized" name="survey_answer_id[{{ index }}]" tabindex="-1" style="display: none;">
+                                                    {% for answer in survey.answers %}
+                                                        <option value="{{ answer.id  }}" {{ loop.first ? 'selected' : '' }}> {{ answer.name }}</option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                        {% endfor %}
+    
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="poll__dots nav nav-tabs row justify-content-center">
+    
+                            {% for survey in data.surveys %}
+                                <span class="nav-item nav-link poll__dots-item {{ loop.first ? 'active' : '' }}" data-toggle="tab" data-target="#tab{{ survey.id }}"></span>
+                            {% endfor %}
+    
+                        </div>
+                        <div class="kuzon-modal-actions ">
+                            <div class="kuzon-form-group__items row justify-content-center">
+                                <button type="button" class="button button--orange button--orange-solid poll__next">Следующий</button>
+                                <button type="button" class="button button--orange button--orange-solid poll__submit" data-dismiss="modal">Закончить</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endif %}

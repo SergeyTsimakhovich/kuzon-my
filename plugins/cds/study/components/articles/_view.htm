@@ -1,0 +1,112 @@
+{% set data = __SELF__.data %}
+{% set article_id = this.param.id %}
+
+<div class="container">
+
+{# если пришла ошибка, значит не существует статьи #}
+{% if data.error %}
+    <div class="row">
+        <div class="col-10 offset-1">
+            <p>{{ data.error }}</p>
+        </div>
+    </div>
+{% else %}
+<div class="row">
+    <div class="col-12 col-lg-9 offset-lg-1">
+        <h2 class="title">{{ data.title }}</h2>
+        <h2 class="subtitle detail__subtitle detail__subtitle--top">{{ data.description|raw }}</h2>
+    </div>
+    <div class="col-12 col-lg-4 offset-lg-1">
+        <div class="detail__author-block">
+            <div class="detail__author-top">
+                <div class="detail__author-img">
+                    <img src="{{ data.user ? data.user.getAvatarThumb(50, 'crop') : data.getAnonymAvatar() }}" alt="">
+                </div>
+                <div class="detail__author-name">
+                    <span>{{ data.authorName }}</span>
+                </div>
+            </div>
+            <div class="detail__author-bottom">
+                    <span class="detail__author-date icon-span icon-span--date">
+                        <svg class="icon button-icon--left" width="15" height="15">
+                            <use xlink:href="#time"></use>
+                        </svg>
+                        {{ data.publishedAtView }}
+                    </span>
+                    <span class="detail__author-view icon-span icon-span--view">
+                        <svg class="icon button-icon--left" width="15" height="15">
+                            <use xlink:href="#view"></use>
+                        </svg>
+                        {{ data.views_count }}
+                    </span>
+                    <span class="detail__author-comment icon-span icon-span--comment">
+                        <svg class="icon button-icon--left" width="15" height="15">
+                            <use xlink:href="#comment"></use>
+                        </svg>
+                        {{ data.comments_count }}
+                    </span>
+                    <span class="detail__author-like icon-span icon-span--like">
+                        <svg class="icon button-icon--left" width="15" height="15">
+                            <use xlink:href="#like"></use>
+                        </svg>
+                        {{ data.reviewsCount }}
+                    </span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12 col-lg-5 offset-lg-1">
+        <div class="detail__text-block user-text">
+            {{ data.body|raw }}
+        </div>
+    </div>
+    {% if data.image is not empty %}
+    <div class="col-12 col-lg-5">
+        <div class="detail__slider">
+            <div class="slider-wrap">
+                <div class="slider-for">
+                    {% for item in data.image %}
+                        <div>
+                            <img class="slider__img" src="{{ item.getThumb(445,275, 'crop') }}" alt="{{ item.title }}">
+                            <p>{{ item.description }}<p>
+                        </div>
+                    {% endfor %}
+                </div>
+
+                <div class="slider-nav">
+                    {% for item in data.image %}
+                        <div>
+                            <img class="slider__img" src="{{ item.getThumb(160,100, 'crop') }}" alt="{{ item.title }}">
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+<div class="row">
+    <div class="col-12 col-lg-10 offset-lg-1">
+        <div class="detail__navigation">
+            <div id="button_review_article" class="detail__like-block">
+                {% partial '@my_review' review=data.reviews.first %}
+            </div>
+            <div class="detail__nav">
+                {% if data.prevArticle %}
+                    <a href="{{ data.prevArticle|app }}" class="detail__btn detail__btn--prev">Предыдущая</a>
+                {% endif %}
+
+                {% if data.nextArticle %}
+                    <a href="{{ data.nextArticle|app }}" class="detail__btn detail__btn--next">Следующая</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+    {% component 'Comments' object_type='Article' object_id=data.id token=this.page.token %}
+
+{% endif %}
+
+</div>

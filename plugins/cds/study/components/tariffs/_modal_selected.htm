@@ -1,0 +1,163 @@
+{% set data = __SELF__.data %}
+
+<section class="feedback select-rate">
+    <div class="feedback__block">
+
+        <button class="close search-courses__close" type="button" data-dismiss="modal"></button>
+
+        {% if not data.organizations is empty %}
+
+        <h4 class="feedback__ttl">выбрать тариф:</h4>
+
+        {{ form_ajax('onMakeBill', { class: 'kuzon-validation',flash:true, success:"$('#modalContainer').modal('hide')" }) }}
+
+        <div class="modal-body px-0 px-md-3">
+            <div class="lk-main-info__form-group kuzon-form-group kuzon-form-group--town lk-main-info__form-group row select-rate__form-group">
+                <div class="col-12 col-sm-11 ">
+                    <div class="row">
+                        <div class="kuzon-form-group__item col-12">
+                            <div class="kuzon-input">
+                                <select onchange="getOrganization(this);"
+                                    class="custom-select-default select-rate__select get-org"
+                                    name="props[object_id]"
+                                    id="select-rate__select">
+                                    <option value="default">Выберите организацию</option>
+                                    {% for item in data.organizations %}
+                                    <option value="{{ item.id }}">{{ item.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="feedback__org mb-3 d-none">
+                <div class="d-flex justify-content-start align-items-start">
+                    <img
+                        class="feedback__org-logo"
+                        src=""
+                        alt="">
+                    <div class="feedback__org-name">
+
+                    </div>
+                </div>
+                <a href="#" class="feedback__org-cancel" id="feedback__org-cancel">Сменить</a>
+            </div>
+            <div class="row feedback__rate mb-4">
+                <div class="col-md-12 text-left">
+                    <div class="row mb-3">
+                        <div class="col-4 col-md-2 feedback__rate-prop">Тариф:</div>
+                        <div class="col-8 col-md-10 feedback__rate-val">{{ data.tariff.name }}</div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-4 col-md-2 feedback__rate-prop">Стоимость:</div>
+                        <div class="col-8 col-md-10 feedback__rate-val">{{ data.tariff.cost_period.cost }} рублей</div>
+                    </div>
+                    <div class="row mb-1">
+                        <div class="col-4 col-md-2 feedback__rate-prop">Период:</div>
+                        <div class="col-8 col-md-10 feedback__rate-val">{{ data.tariff.cost_period.periodName }}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-8 col-md-10 feedback__rate-prop">
+                        <label class="lk-main-info__isOrganisation">
+                            <div class="kuzon-checkbox">
+                                <input type="checkbox" class="lk-main-info__isOrganisation-control kuzon-checkbox__control" name="props[dateStart]" value="2">
+                                <div class="kuzon-checkbox__icon">
+                                    <div class="kuzon-checkbox__icon-roung"></div>
+                                </div>
+                                <span class="kuzon-checkbox__text ml-3">Включить с текущей даты</span>
+                            </div>
+                        </label>
+                        </div>
+                    </div>
+
+                    <input type="hidden" name="props[tariff_id]" value="{{ data.tariff.id }}">
+                    <input type="hidden" name="props[cost_period]" value="{{ data.tariff.cost_period.id }}">
+
+                </div>
+            </div>
+
+            <div class="control-container">
+                <div class="control-btns flex-column flex-md-row justify-content-between align-items-center">
+                    <button class="requisites-btn" id="requisites-btn">Ввести реквизиты</button>
+{#                    <div>или</div>#}
+{#                    <a href="#" class="orgCardlink">Заполнить карточку предприятия</a>#}
+                </div>
+            </div>
+
+            <div class="form-container">
+                <div class="lk-main-info__form-group kuzon-form-group kuzon-form-group--town lk-main-info__form-group row">
+                    <div class="col-12 col-sm-11 ">
+                        <div class="row">
+                            <div class="kuzon-form-group__item col-12 col-md-7">
+                                <div class="kuzon-input">
+                                    <input
+                                        name="requisites[name_organization]" type="text" class="kuzon-input__input select-rate__input kv-req"
+                                        placeholder="   " {{ disabled }}
+                                        value="">
+                                    <span class="kuzon-input__placeholder">Наименование организации</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="lk-main-info__form-group kuzon-form-group kuzon-form-group--inn lk-main-info__form-group row">
+                    <div class="col-12 col-sm-11 ">
+                        <div class="row">
+                            <div class="kuzon-form-group__item col-12 col-sm-6">
+                                <div class="kuzon-input">
+                                    <input
+                                        name="requisites[inn]" type="text" class="kuzon-input__input select-rate__input kv-req"
+                                        placeholder="   " {{ disabled }}
+                                            minlength="10" maxlength="12"
+                                        value="">
+                                    <span class="kuzon-input__placeholder">ИНН</span>
+                                </div>
+                            </div>
+                            <div class="" style="width: 100%;"></div>
+                            <div class="kuzon-form-group__item col-12 col-sm-6">
+                                <div class="kuzon-input">
+                                    <input
+                                        name="requisites[kpp]" type="text" class="kuzon-input__input select-rate__input kv-req"
+                                        placeholder="   " {{ disabled }}
+                                        minlength="9" maxlength="9"
+                                        value="">
+                                    <span class="kuzon-input__placeholder">КПП</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+{#                <div class="row">#}
+{#                    <div class="col-12 offset-0 col-md-11 offset-md-1">#}
+{#                        <a href="#" class="orgCardlink">Заполнить карточку предприятия</a>#}
+{#                    </div>#}
+{#                </div>#}
+            </div>
+        </div>
+        <div class="select-rate-footer row justify-content-end align-items-center">
+            <div class="col-4 col-md-2 text-center">
+                <button type="button" data-dismiss="modal" class="select-rate-footer-cancelBtn">Отмена</button>
+            </div>
+            <div class="col-8 col-md-5 text-center d-flex justify-content-end">
+                <button type="submit" disabled class="select-rate-footer-saveBtn">Сформировать счет</button>
+            </div>
+        </div>
+        {{ form_close }}
+
+        {% else %}
+        <button class="close search-courses__close" type="button" data-dismiss="modal"></button>
+
+        <h4 class="feedback__ttl">выбрать тариф:</h4>
+
+        <div class="modal-body px-0 px-md-3">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <p class="description">У вас нет организаций для подключения тарифа!</p>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+    </div>
+</section>

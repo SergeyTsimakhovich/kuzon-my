@@ -1,0 +1,19 @@
+{% set servicesList = __SELF__.data.servicesList %}
+
+{# <div class="row"> #}
+<h3 class="lk-main-info__title title-3">Подобрать тариф</h3>
+<div class="row">
+<div class="col-lg-3 col-md-12">
+    <ul class="punkt-names desktop">
+        {% for item in servicesList %}
+        <li>{{ item }}</li>
+        {% endfor %}
+    </ul>
+</div>
+
+{% for item in __SELF__.data.tariffsList %}
+    {% partial '@card' item = item servicesList = servicesList %}
+{% endfor %}
+
+</div>
+{# </div> #}

@@ -1,0 +1,35 @@
+
+<section class="page-link">
+{% set items = __SELF__.data %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12 offset-xl-1 col-xl-10">
+
+                <ul class="page-link__items">
+                    {% for item in items %}
+                        {% if loop.last %}
+                            <li>
+                                <span class="page-link__item page-link__item--lk" id="currentPage">
+                                    {% placeholder title default %}
+                                        {{ item.title }}
+                                    {% endplaceholder %}
+                                </span>
+                            </li>
+                        {% else %}
+                            {% if not item.title is empty %}
+                                <li>
+                                    <a class="page-link__item page-link__item--lk" href="{{ item.url }}">{{ item.title }}
+                                        <svg class="icon button-icon--left" width="9" height="6">
+                                            <use xlink:href="#arrow-search"></use>
+                                        </svg>
+                                    </a>
+                                </li>
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+
+            </div>
+        </div>
+    </div>
+</section>

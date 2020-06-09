@@ -1,0 +1,24 @@
+{% set data = __SELF__.data %}
+
+<section class="feedback">
+    <div class="feedback__block">
+        <button class="close search-courses__close" type="button" data-dismiss="modal"></button>
+        <h1 class="title">Что вам не понравилось?</h1>
+        <h3 class="subtitle">Пару слов позволит нам стать лучше</h3>
+        {{ form_ajax('onHelpfulAsk', {flash: true, success:"$('#modalContainer').modal('hide')", class: "comment-enter"}) }}
+            <input type="hidden" name="status" value="0">
+            <input type="hidden" name="article_id" value="{{ data.article_id }}">
+
+            <div class="comment-enter__textarea-wrap">
+                <textarea name="body" id="commentBody-{{ commemtBody }}" placeholder="Напишите комментарий" class="comment-enter__textarea"></textarea>
+            </div>
+            <div class="comment-enter__footer">
+                <button class="comment-enter__send">
+                    {% content "send-icon.htm" %}
+                </button>
+            </div>
+        {{ form_close }}
+    </div>
+</section>
+
+

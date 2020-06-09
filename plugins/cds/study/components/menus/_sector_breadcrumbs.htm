@@ -1,0 +1,43 @@
+
+<section class="page-link">
+{% set data = __SELF__.data %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12 offset-xl-1 col-xl-10">
+
+                <ul class="page-link__items">
+
+                    <li>
+                        <a class="page-link__item page-link__item--lk" href="{{ '/'|app }}">Главная страница
+                            <svg class="icon button-icon--left" width="9" height="6">
+                                <use xlink:href="#arrow-search"></use>
+                            </svg>
+                        </a>
+                    </li>
+
+                    {% for item in data %}
+                        {% if loop.last %}
+                        <li>
+                            <span class="page-link__item page-link__item--lk">
+                                {{ item.name|capitalize }}
+                            </span>
+                        </li>
+                        {% else %}
+                        <li>
+                            <a class="page-link__item page-link__item--lk" href="{{ item.searchLink|app }}">{{ item.name|capitalize }}
+                                <svg class="icon button-icon--left" width="9" height="6">
+                                    <use xlink:href="#arrow-search"></use>
+                                </svg>
+                            </a>
+                        </li>
+                        {% endif %}
+                    {% endfor %}
+
+                    
+
+                </ul>
+
+            </div>
+        </div>
+    </div>
+</section>

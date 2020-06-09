@@ -1,0 +1,23 @@
+{% set seo = __SELF__.data %}
+<section class="description">
+    <div class="container">
+    <div class="row">
+    <div class="col-12 offset-0 col-xl-11 offset-xl-1">
+        <div class='user-text'>
+            <div class="row">
+                <div class="col-12">
+                    <h2>{{ seo.title }} в {{ Realms.getNameMorph() }}</h2>
+                </div>
+                <div class="col-12 col-lg-6">
+                    {{ seo.description|raw }}
+                </div>
+                <div class="d-none d-lg-block offset-lg-1 col-lg-5">
+                    <img src="{{ seo.image }}" class="img" alt="{{ seo.title }}">
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
+    </div>
+</section>
+

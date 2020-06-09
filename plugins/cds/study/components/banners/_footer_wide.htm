@@ -1,0 +1,16 @@
+{% set data = __SELF__.data %}
+
+<div class="container">
+    <div class="row">
+        {% for item in data.banners %}
+            {% if item.thumbnail %}
+                <div class="col-12 col-sm-6 seo__block">
+                    <a class="seo__img-block" rel="nofollow" href="{{ item.link }}" {{ item.new_window ? "target='_blank'" : '' }}>
+                        <img class="seo__img" src="{{ item.thumbnail }}" alt="{{ item.title }}">
+                    </a>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
+

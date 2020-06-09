@@ -1,0 +1,31 @@
+
+<div class="lk-main-info__search-organisation">
+    <div class="row">
+        <div class="col-12 offset-lg-1 col-lg-11">
+            <label class="lk-main-info__isOrganisation">
+                <div class="kuzon-checkbox">
+                    <input type="checkbox" class="lk-main-info__isOrganisation-control kuzon-checkbox__control" name="agent" {{ Session.user.agent ? 'checked' : '' }}>
+                    <div class="kuzon-checkbox__icon">
+                        <div class="kuzon-checkbox__icon-roung"></div>
+                    </div>
+                    <span class="kuzon-checkbox__text ml-3">Представитель образовательной организации</span>
+                </div>
+            </label>
+
+            {% if Session.user %}
+                {% component 'Organizations' variant="request_with_org_lists" %}
+            {% endif %}
+
+        </div>
+    </div>
+
+</div>
+
+{# {% if not Session.user %}
+    <div class="form-row">
+        <div class="form-check col-md-12">
+            <input type="checkbox" class="form-check-input" id="accountPersonalData" name="personal" {{ Session.user.personal ? 'checked' : '' }} data-request="{{ __SELF__ }}::onCheckedPersonal" required>
+            <label class="form-check-label" for="accountPersonalData">Согласен на обработку персональных данных</label>
+        </div>
+    </div>
+{% endif %} #}

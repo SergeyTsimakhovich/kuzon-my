@@ -1,0 +1,10 @@
+{% set data = __SELF__.data.data %}
+{% set notifyCount1 = __SELF__.data.notifyCount %}
+
+{% put count %}
+    {{ notifyCount1 }}
+{% endput %}
+
+<div class="kuzon-lk__notif lk-profile col-12 col-md-7 col-lg-8 col-xl-7 mb-0 pb-0">
+    {% partial '@list' data = data %}
+</div>

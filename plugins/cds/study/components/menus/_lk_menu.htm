@@ -1,0 +1,57 @@
+{# представитель организации #}
+{% set agent = Session.user.agent ? 1 : 0 %}
+
+{# физ.лицо или юр.лицо #}
+{% set user_type = Session.user.type %}
+
+{% set notifyCount = Notifications.getNotifyCount()%}
+{% set avatarPath = Session.user.getAvatarThumb(200, 'crop', false) %}
+{% set noAvatar = 'assets/img/images/no_avatar.png'|theme  %}
+
+<div class="kuzon-lk__asside col-12 col-md-5 col-lg-4 offset-xl-1 col-xl-3 d-none d-md-block">
+    <div class="lk-asside">
+        <div class="lk-asside__photo">
+            <div class="kuzon-avatar" data-accept=".jpg, .jpeg, .png" data-action="/avatarupload" data-dzname="avatar" data-id="{{ Session.user.avatar.id }}" data-avatar="{{ avatarPath }}">
+                <div class="kuzon-avatar__content" style="background-image: url({{ noAvatar }});">
+                    <div class="kuzon-avatar__overlay kuzon-avatar__click"></div>
+                </div>
+                
+            </div>
+        </div>
+        <div class="lk-asside__name">
+            {{ Session.user.fullname }}
+        </div>
+        <div class="lk-asside__info">
+            {% if agent %}
+                {% if user_type == 2 %}
+                    {{ Session.user.name_org }}
+                {% else %}
+                    Контактное лицо
+                {% endif %}
+            {% endif %}
+        </div>
+        <ul class="lk-asside__list">
+
+            {% for item in __SELF__.data.menus %}
+                {# если ты Представитель организации и твой тип пользователя совпадает с разрешенным в пункте меню то показываем #}
+                {% if agent >= item.agent_only and user_type in item.user_types %}
+                    <li class="lk-asside__list-item">
+                        <a href="{{ item.slug|app }}"
+                           title="{{ item.seo_description }}"
+                           class="lk-asside__link {{ item.slug in __SELF__.properties.slug ? 'lk-asside__link--active' : '' }}">
+                            {{ item.title }}
+                            {% if item.custom_data == 'notify' and notifyCount > 0 %}
+                                <span class="badge badge-pill badge-danger" id="countNotificationsMenu">
+                                    ({% placeholder count default %}
+                                        {{ notifyCount }}
+                                    {% endplaceholder %})
+                                </span>
+                            {% endif %}
+                        </a>
+                    </li>
+                {% endif %}
+            {% endfor %}
+
+        </ul>
+    </div>
+</div>

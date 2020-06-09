@@ -1,0 +1,26 @@
+{% set data = __SELF__.data %}
+
+<div class="kuzon-lk__profile lk-profile col-12 col-md-7 col-lg-8 col-xl-7">
+
+    {{ form_ajax('Resumes::onUpdate', {flash:true, files:true, class:"lk-resume kuzon-validation"}) }}
+    <h3 class="lk-main-info__title title-3">
+        Данные для отправки заявки
+    </h3>
+
+    <p class="search-result__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, amet atque culpa expedita hic nesciunt nostrum optio perspiciatis, possimus, praesentium quisquam ullam vel voluptas! Doloremque minus odit quasi veniam voluptatem.</p>
+
+
+    {% partial '@user_data' data=data %}
+
+
+    {% partial '@edu_level' data=data %}
+            
+
+    {% partial '@documents' data=data %}
+
+    <button class="lk-main-info__save kuzon-btn kuzon-btn--view-3">Сохранить</button>
+    <span class="save-desc">Нажимая кнопку “Сохранить”, Вы выражаете согласие на обработку персональных данных и передачу моих личных данных организациям при оформлении подписки на рассылку</span>
+
+    {{ form_close() }}
+
+</div>

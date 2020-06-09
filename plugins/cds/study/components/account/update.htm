@@ -1,0 +1,35 @@
+<div class="kuzon-lk__profile lk-profile col-12 col-md-7 col-lg-8 col-xl-7">
+
+    {{ form_ajax('Account::onUpdate', {flash:true, class:"lk-main-info kuzon-validation"}) }}
+
+        <div class="lk-profile__main-info">
+            <h3 class="lk-main-info__title title-3">Основная информация</h3>
+
+            {% partial '@main_form' %}
+
+            <button class="lk-main-info__save kuzon-btn kuzon-btn--view-3">Сохранить изменения</button>
+        </div>
+
+    {{ form_close() }}
+
+
+    {{ form_ajax('Account::onChangePassword',
+        {
+            flash:true,
+            id:"changePasswordForm",
+            class:"lk-change-pass kuzon-validation",
+            success:"document.getElementById('changePasswordForm').reset()"
+        })
+    }}
+
+        <div class="lk-profile__change-passwordd">
+            <h3 class="lk-change-pass__title title-4">Сменить пароль</h3>
+
+            {% partial '@password_confirm_password' %}
+
+            <button type="submit" class="lk-change-pass__save kuzon-btn kuzon-btn--view-3">Изменить</button>
+        </div>
+
+    {{ form_close() }}
+
+</div>

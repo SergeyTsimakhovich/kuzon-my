@@ -1,0 +1,53 @@
+{% set data = __SELF__.data.comments %}
+{% set count = __SELF__.data.commentsCount %}
+{% set prop = __SELF__.data.prop %}
+
+<div class="row">
+    {% if prop.object_type == 'Article' or prop.object_type == 'About' %}
+    <div class="col-12 offset-lg-1 col-lg-10 col-xl-8">
+    {% endif %}
+
+    {% if prop.object_type == 'Organization' and prop.object_type_class != 'Program' %}
+    <div class="col-12 col-lg-10 col-xl-10">
+        <h3 class="program-reviews__title title-3 title mb-4">
+            Отзывы
+        </h3>
+        <div class="program-reviews__like">
+            <span class="program-reviews__like-text">
+                Учились здесь? Оставьте свой отзыв, и, может быть, это поможет другим в выборе. Кроме этого, из ваших оценок формируется наш рейтинг
+            </span>
+        </div>
+    {% endif %}
+
+    {% if prop.object_type_class == 'Program' %}
+    <div class="col-12 offset-lg-1 col-lg-8 col-xl-8">
+        <h3 class="program-reviews__title title-3 title mb-4">
+            Отзывы
+        </h3>
+        <div class="program-reviews__like">
+            <span class="program-reviews__like-text">
+                Понравилась программа обучения?
+            </span>
+        </div>
+    {% endif %}
+        <div class="program-reviews__comments comment-list" id="commentsdiv">
+
+            <div class="program-reviews__comments-enter">
+                {% partial '@comment-enter' placeholder=__SELF__.properties.placeholder object_type=prop.object_type object_id=prop.object_id guest_name=__SELF__.data.guest_name %}
+            </div>
+            <div id="new-comment"></div>
+            {% for index, item in data %}
+                {% partial '@_card' level=0 index=index item=item object_type=prop.object_type object_id=prop.object_id token=prop.token %}
+            {% endfor %}
+
+            <div class="col-11 offset-1 detail__commet--bottom">
+                {% if data.count > 10 %}
+                    <div class="program-reviews__comments-enter">
+                        {% partial '@comment-enter' placeholder=__SELF__.properties.placeholder object_type=prop.object_type object_id=prop.object_id guest_name=__SELF__.data.guest_name %}
+                    </div>
+                {% endif %}
+            </div>
+
+        </div>
+    </div>
+</div>

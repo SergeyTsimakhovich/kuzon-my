@@ -1,0 +1,30 @@
+{# <section class="feedback">
+
+    <div class="signin__block">
+        <div class="container">
+            <button class="close" type="button" data-dismiss="modal"><div class="close-fix"></div></button>
+            <div class="kuzon-modal__title">Войти</div>
+            <div class="modal-body">
+                <div class="container">
+                    {% partial '@signin' %}
+                </div>
+            </div>  
+        </div>
+    </div>
+</section> #}
+
+<section class="feedback modal-bdrad">
+    <!-- Называем это блок в зависимости от окна как например если бы это было окно регистрации, то блок назывался бы register__block -->
+    <div class="signin__block modal-bdrad">
+        <!-- тут оставляем все тоже самое меняем только наполнение -->
+        <div class="container">
+            <button class="close" type="button" data-dismiss="modal"><div class="close-fix"></div></button>
+            <div class="kuzon-modal__title">Войти</div>
+            <div class="modal-body">
+                <div class="container">
+                   {% partial '@_signin' %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

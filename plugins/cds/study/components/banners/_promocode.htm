@@ -1,0 +1,21 @@
+{% set data = __SELF__.data %}
+
+{% if data.check_promocode %}
+        <section class="detail-program__banner detail-program__section mb-0 pb-5">
+            <div class="discount-banner">
+                <div class="container discount-banner__wrap">
+                    <div class="discount-banner__bg"></div>
+                    <div class="row">
+                        <div class="col-12 offset-xl-1 col-lg-9 col-xl-6">
+                            <h2 class="discount-banner__title">
+                                Скидка <span class="discount-banner__sale">{{ data.discount }}%</span>  по промокоду
+                            </h2>
+                            <p class="discount-banner__description">Пример подзаголовка, описывающий перечень сценариев обращения</p>
+                        </div>
+                        <div class="col-12 col-lg-3 offset-lg-0 col-xl-2">
+                            <button class="button button-type-2" id="promocode" data-request="UserActions::onView" data-request-data="organization_id: {{ data.organization_id }}, variant: 'promocode'">Показать</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+{% endif %}

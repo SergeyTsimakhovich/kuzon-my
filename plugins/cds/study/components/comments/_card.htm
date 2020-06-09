@@ -1,0 +1,91 @@
+{% set user = Session.user %}
+{% set isOwner = item.user.id == user.id %}
+
+{% set label_user = item.getUserLabel() %}
+{% set author_name = item.user ? item.user.fullname : item.guest_name %}
+
+{% set rateSum = item.rates.sum('value') %}
+
+{% if level == 0 %}
+    {% if index == 0 %}
+    <div id="new-comment"></div>
+    {% endif %}
+<div class="comment comment-list__item">
+{% endif %}
+
+{% if level > 0 %}
+    {% if index == 0 %}
+    <div id="new-comment-answer-{{ item.id }}"></div>
+    {% endif %}
+<div class="comment">
+{% endif %}
+
+<div class="comment__wrap" id="commentdiv-{{ item.id }}">
+    <div class="comment__photo">
+        <img src="{{ item.user ? item.user.getAvatarThumb(50, 'crop') : item.getAnonymAvatar(50) }}" alt="" class="comment__photo-img">
+    </div>
+    <div class="comment__content">
+        <div class="comment__header">
+            <a class="comment__name">{{ author_name }}</a>
+            <div class="comment__info">
+                <div class="comment__role comment__info-item">
+                    <span class="info-block info-block--user">
+                        {{ label_user }}
+                    </span>
+                </div>
+                <div class="comment__time comment__info-item">
+                    <span class="info-block info-block--time">
+{#                        {{ item.created_at|date('d.m.Y г. в H:i') }}#}
+                        {{ item.createdDate}}
+                    </span>
+                </div>
+                {% if item.rate %}
+                    <div class="comment__like comment__info-item">
+                        {% partial '@org_rates' id=item.id rate=item.rate %}
+                    </div>
+                {% endif %}
+                <div class="comment__like comment__info-item">
+                    <div class="comment__like-count">
+                        <div class="info-block info-block--rating">
+                            {{ rateSum }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p class="comment__text">{{ item.body }}</p>
+        <div class="comment__footer">
+            <div class="comment__rating kuzon-rating">
+                {% partial '@my_rate' value=item.my_rate.value id=item.id %}
+            </div>
+            {% if not isOwner and level < 1 %}
+                <a href="" class="comment__answer"
+                   data-request="{{ __SELF__ }}::onGetButtonAnswer"
+                   data-request-data="object_type: '{{ object_type }}', object_id: {{ object_id }}, parent_id: {{ item.id  }}"
+                >Ответить</a>
+            {% endif %}
+        </div>
+        <div class="comment__enter" id="comment-enter-{{ item.id }}">
+{#            {% partial '@comment-enter' object_type=object_type object_id=object_id parent_id=item.id %}#}
+        </div>
+    </div>
+</div>
+
+{% if level+1 < 2 %}
+    {% for index, children in item.children %}
+        {% partial '@_card' level=level+1 index=index item=children %}
+    {% else  %}
+        <div id="new-comment-answer-{{ item.id }}"></div>
+    {% endfor %}
+{% endif %}
+
+{% if level == 0 %}
+</div>
+{% endif %}
+
+{% if level > 0 %}
+</div>
+{% endif %}
+
+
+

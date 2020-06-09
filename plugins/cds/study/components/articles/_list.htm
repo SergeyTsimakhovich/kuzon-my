@@ -1,0 +1,104 @@
+{% set data = __SELF__.data %}
+{% set prop = __SELF__.properties %}
+{% set classColumn = prop.area == 'lk' ? 'col-12 col-md-7' : 'col-12 offset-xl-1 col-xl-10' %}
+
+
+<div class="{{ classColumn }}">
+
+    {% if data.error %}
+        <h3 class="lk-favor__title title-3">{{ error }}</h3>
+    {% else %}
+
+        {% if prop.area != 'lk' %}
+            <h2 class="title">Новости и статьи</h2>
+
+        {% else %}
+        <div class="row">
+            <div class="col-12 col-xl-12">
+                <h3 class="lk-favor__title title-4">Информация для пользователей</h3>
+                <div class="typography lk-statistics__info">
+                    <ul>
+                        <li>Количество символов минимум 1000 знаков</li>
+                        <li>Размер фото: от 450*450 до 2000*2000 пикселей (в.*ш.)</li>
+                        <li>Вес загружаемых изображений не должен превышать 15 мбайт</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="typography--viev-2 lk-statistics__info">
+            <p>Чтобы добавить статью на сайт, отправьте ее на наш email <a href="email:blog@kuzon.ru">blog@kuzon.ru</a> В тексте письма укажите номер телефона и email, указанные в вашем профиле.</p>
+        </div>
+            {% if data.articles is not empty %}
+                <h3 class="lk-favor__title title-3">Опубликованные</h3>
+            {% endif %}
+        
+        {% endif %}
+
+        {% if data.articles is not empty %}
+            {% if not prop.num %}
+            <div class="sorting">
+                <ul class="sorting__items">
+                    {% if prop.area == 'lk' %}
+                        <li class="sorting__item">
+                            <a class="sorting__link sorting__link--comments" href="{{ this.page.settings.url }}?sort=comments_{{ data.sort.sort == 'comments' and data.sort.sort_order == 'desc' ? 'asc' : 'desc' }}&page={{ data.articles.currentPage ? data.articles.currentPage : 1 }}">Новые комментарии
+                                <svg class="icon button-icon--rigth" width="15" height="15">
+                                    <use xlink:href="#{{ data.sort.sort == 'comments' ? (data.sort.sort_order == 'desc' ? 'popular' : 'date') : 'date' }}"></use>
+                                </svg>
+                            </a>
+                        </li>
+                    {% endif %}
+                    <li class="sorting__item">
+                        <a class="sorting__link sorting__link--date" href="{{ this.page.settings.url }}?sort=date_{{ data.sort.sort == 'date' and data.sort.sort_order == 'desc' ? 'asc' : 'desc' }}&page={{ data.articles.currentPage ? data.articles.currentPage : 1 }}">По дате
+                            <svg class="icon button-icon--rigth" width="15" height="15">
+                                <use xlink:href="#{{ data.sort.sort == 'date' ? (data.sort.sort_order == 'desc' ? 'popular' : 'date') : 'date' }}"></use>
+                            </svg>
+                        </a>
+                    </li>
+                    <li class="sorting__item">
+                        <a class="sorting__link sorting__link--popular" href="{{ this.page.settings.url }}?sort=popular_{{ data.sort.sort == 'popular' and data.sort.sort_order == 'desc' ? 'asc' : 'desc' }}&page={{ data.articles.currentPage ? data.articles.currentPage : 1 }}">По популярности
+                            <svg class="icon button-icon--left" width="15" height="15">
+                                <use xlink:href="#{{ data.sort.sort == 'popular' ? (data.sort.sort_order == 'desc' ? 'popular' : 'date') : 'date' }}"></use>
+                            </svg>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            {% endif %}
+        {% endif %}
+
+        <div class="news__wrapper">
+            <div class="row">
+                {% for item in data.articles %}
+                        {% if loop.first and this.param.id %}
+                            {% put title %}
+                                {{ 'Автор публикации' ~ ' ' ~ item.user.full_name }}
+                            {% endput %}
+                        {% endif %}
+
+                    {% partial '@_card' item=item %}
+                {% else %}
+                    <div class="col-12">
+                        {% if area == 'lk' %}
+                            <h3 class="lk-favor__title title-4">У Вас нет опубликованных статей</h3>
+                        {% else %}
+                            <h3 class="lk-favor__title title-4">У Вас нет опубликованных статей</h3>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        {% if prop.num %}
+            <div class="news__button"><a class="button button-type-2 button--orange" href="{{ 'articles'|app }}">Смотреть все</a></div>
+        {% endif %}
+
+    {% endif %}
+    
+    {% if not prop.num %}
+        {% partial 'pagination/pagination' data=data.articles.appends({ sort: data.sort.sort ~ '_' ~ data.sort.sort_order }) %}
+    {% endif %}
+
+
+
+
+

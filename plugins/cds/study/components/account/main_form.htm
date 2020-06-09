@@ -1,0 +1,25 @@
+{#
+    если мы на форме регистрации, то проверяем type (выпадающий список)  1 -физлцо 2 -юрлицо,
+    иначе если в моём профиле, смотрим  __SELF__.user.type и выводим соответствующий фрагмент
+#}
+{% set user_type =  __SELF__.user.type  ? __SELF__.user.type : (type ?? 1) %}
+
+<input type="hidden" name="type" value="{{ user_type }}">
+
+{% if user_type == 2 %}
+    {# здесь фрагмент для юр лиц #}
+    {% partial '@juridical_person' %}
+{% endif %}
+
+{# здесь обычная форма #}
+{% partial '@simple_person' user_type=user_type %}
+
+{% if not Session.user %}
+    {# здесь два инпута для пароля и подтверждения пароля #}
+    {% partial '@password_confirm_password' action='register' %}
+{% endif %}
+
+{% if Session.user %}
+{#     здесь чекбоксы Представитель организации и Согласен на обработку персональных данных #}
+    {% partial '@additional_checkbox' %}
+{% endif %}

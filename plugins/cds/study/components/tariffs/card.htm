@@ -1,0 +1,80 @@
+{% if item.isShowPromo %}
+<div class="col-lg-3 col-md-12">
+    {% if not item.client_choice %}
+    <div class="features-column">
+    {% else %}
+    <p class="client-choice-caption">Выбор клиентов</p>
+    <div class="features-column clients-choice">
+        <div class="ancle-mark">
+            <svg width="45" height="45" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#clip0)">
+            <path d="M0.330872 -1.14441e-05L45 -6.48499e-05V43.8425L0.330872 -1.14441e-05Z" fill="#E25E2A"></path>
+            <g clip-path="url(#clip1)">
+            <path d="M36.9 17.875V18.625C36.9 18.7245 36.8632 18.8198 36.7975 18.8902C36.7319 18.9605 36.6429 19 36.55 19H27.45C27.3572 19 27.2682 18.9605 27.2025 18.8902C27.1369 18.8198 27.1 18.7245 27.1 18.625V17.875C27.1 17.7755 27.1369 17.6802 27.2025 17.6098C27.2682 17.5395 27.3572 17.5 27.45 17.5H36.55C36.6429 17.5 36.7319 17.5395 36.7975 17.6098C36.8632 17.6802 36.9 17.7755 36.9 17.875Z" fill="white"></path>
+            <path d="M39 11.1254C39 11.4238 38.8894 11.7099 38.6925 11.9209C38.4956 12.1319 38.2285 12.2504 37.95 12.2504C37.8935 12.2489 37.8372 12.2427 37.7816 12.2317L36.2 16.7504H27.8L26.2185 12.2317C26.1629 12.2427 26.1065 12.2489 26.05 12.2504C25.8212 12.2517 25.5981 12.1735 25.4142 12.0274C25.2304 11.8813 25.0957 11.6753 25.0304 11.4402C24.9652 11.2052 24.9728 10.9538 25.0522 10.7238C25.1316 10.4938 25.2785 10.2976 25.4708 10.1646C25.6631 10.0317 25.8905 9.96913 26.1188 9.98637C26.3471 10.0036 26.564 10.0997 26.737 10.2603C26.91 10.4209 27.0298 10.6372 27.0782 10.8769C27.1267 11.1165 27.1014 11.3666 27.006 11.5895L28.5875 12.6067C28.6674 12.6578 28.7561 12.6914 28.8482 12.7054C28.9404 12.7194 29.0342 12.7136 29.1242 12.6883C29.2143 12.663 29.2987 12.6187 29.3726 12.558C29.4464 12.4973 29.5082 12.4214 29.5544 12.3348L31.3372 8.99261C31.1691 8.84597 31.0474 8.64714 30.9889 8.42344C30.9305 8.19973 30.9381 7.96212 31.0107 7.74324C31.0833 7.52435 31.2174 7.33492 31.3946 7.20096C31.5717 7.067 31.7832 6.99509 32 6.99509C32.2168 6.99509 32.4284 7.067 32.6055 7.20096C32.7826 7.33492 32.9167 7.52435 32.9894 7.74324C33.062 7.96212 33.0696 8.19973 33.0111 8.42344C32.9527 8.64714 32.831 8.84597 32.6628 8.99261L34.4457 12.3348C34.4918 12.4214 34.5536 12.4973 34.6275 12.558C34.7014 12.6187 34.7858 12.663 34.8758 12.6883C34.9658 12.7136 35.0597 12.7194 35.1518 12.7054C35.244 12.6914 35.3326 12.6578 35.4125 12.6067L36.9963 11.5895C36.9331 11.4442 36.9002 11.2858 36.9 11.1254C36.9 10.8271 37.0107 10.5409 37.2076 10.3299C37.4045 10.119 37.6716 10.0004 37.95 10.0004C38.2285 10.0004 38.4956 10.119 38.6925 10.3299C38.8894 10.5409 39 10.8271 39 11.1254Z" fill="white"></path>
+            </g>
+            </g>
+            <defs>
+            <clipPath id="clip0">
+                <path d="M0 0H40C42.7614 0 45 2.23858 45 5V45H0V0Z" fill="white"></path>
+                </clipPath>
+                <clipPath id="clip1">
+                <rect x="25" y="7" width="14" height="12" fill="white"></rect>
+                </clipPath>
+            </defs>
+            </svg>
+        </div>
+    {% endif %}
+    
+    <p class="feature-name">{{ item.name }}</p>
+    <a class="feature-more collapsed d-lg-none" data-toggle="collapse" href="#block{{item.id}}">Подробнее</a>
+        <div class="feature-block collapse d-lg-block" id="block{{item.id}}">
+
+            <ul class="punkt-names mobile">
+                {% for index, item in servicesList %}
+                    <li>{{ item }}</li>
+                {% endfor %}
+            </ul>
+
+            <ul class="feature-list">
+                {% for index, servicesItem in servicesList %}
+                    {% set checked = 'disabled' %}
+
+                    {% for tariffService in item.services %}
+                        {% if tariffService.id == index %}
+                            {% set checked = 'checked' %}
+                        {% endif %}
+                    {% endfor %}     
+                    <li>
+                        <input id="tarif-{{ item.id }}-checkbox-{{ index }}" type="radio" name="radio" {{ checked }} hidden="">
+                        <label for="tarif-{{ item.id }}-checkbox-{{ index }}"><span></span></label>
+                    </li>
+                {% endfor %}
+            </ul>
+
+        </div>
+        <div class="during-block">
+            {% for costPeriodItem in item.costs_periods %}
+                {% set checked = '' %}
+                {% if loop.last %}
+                    {% set checked = 'checked' %}
+                {% endif %}
+                <input id="tarif-{{ item.id }}-{{ costPeriodItem.period }}" 
+                        type="radio" name="tarif-{{ item.id }}" {{ checked }} hidden=""
+                        data-request="{{ __SELF__ }}::onChangePeriod"
+                        data-request-data="id: {{ costPeriodItem.id }}, tariff_id: {{ item.id }}"
+                        data-request-success="window.loadModalHandler(data)">
+                <label for="tarif-{{ item.id }}-{{ costPeriodItem.period }}">
+                    <span class="circle">
+                        <span class="small-circle"></span>
+                    </span>
+                    <span class="during-name">{{ costPeriodItem.periodName }}</span>
+                </label>
+            {% endfor %}
+        </div>
+        <div class="price-block" id="price-block-{{ item.id }}">
+            {% partial '@tariff_cost_card' cost = item.costs_periods.last %}
+        </div>
+    </div>
+</div>
+{% endif %}

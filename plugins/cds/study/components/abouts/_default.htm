@@ -1,0 +1,68 @@
+{% set data = __SELF__.data %}
+
+<div class="container pb-5">
+
+    {% if data.teaser is not empty or data.name is not empty %}
+    <div class="row">
+        <div class="col-12 col-lg-9 offset-lg-1">
+            <h2 class="title">{{ data.name }}</h2>
+            <h2 class="subtitle detail__subtitle detail__subtitle--top">{{ data.teaser|raw }}</h2>
+        </div>
+    </div>
+    {% endif %}
+
+    {% if data.list is not empty %}
+    <div class="row">
+        <div class="col-12 col-lg-9 offset-lg-1">
+            <div class="detail__text-block user-text">
+                {{ data.list|raw }}
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+
+    <div class="row">
+
+         {% if data.body is not empty %}
+        <div class="col-12 col-lg-{{ data.code in ['reklama' , 'about'] ? '5' : '9' }} offset-lg-1">
+            <div class="detail__text-block user-text">
+                {{ data.body|raw }}
+            </div>
+        </div>
+
+        {% endif %}
+        <div class="col-12 col-lg-5 {{ data.body is empty ? 'offset-lg-3' : '' }}">
+
+            {% if data.images is not empty %}
+            <div class="detail__slider">
+                <div class="slider-wrap">
+                    <div class="slider-for">
+                        {% for item in data.images %}
+                            <div>
+                                <img class="slider__img" src="{{ item.getThumb(445,275, 'crop') }}" alt="{{ item.title }}">
+                                <p>{{ item.description }}<p>
+                            </div>
+                        {% endfor %}
+                    </div>
+
+                    <div class="slider-nav">
+                        {% for item in data.images %}
+                            <div>
+                                <img class="slider__img" src="{{ item.getThumb(160,100, 'crop') }}" alt="{{ item.title }}">
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+        </div>
+    </div>
+
+    {% if data.code == 'helps' %}
+        {% component 'Comments' object_type='About' object_id=data.id token=this.page.token placeholder="Задайте свой вопрос" %}
+    {% endif %}
+
+</div>
+

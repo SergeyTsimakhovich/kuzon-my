@@ -1,0 +1,43 @@
+{#<div class="kuzon-lk__notif lk-profile col-12 col-lg-8 col-xl-7">#}
+
+{#    <button data-request="{{ __SELF__ }}::onGetFormCapture" data-request-success="window.loadModalHandler(data)"#}
+{#            data-request-data="sector_id: 4">Показать форму захвата для направления 4#}
+{#    </button>#}
+
+{#    <button data-request="{{ __SELF__ }}::onGetFormCapture"#}
+{#            data-request-data="sector_id: 5"#}
+{#            data-request-success="window.loadModalHandler(data)"#}
+{#        >Показать форму захвата для направления 5#}
+{#    </button>#}
+
+{#    #}
+{#</div>#}
+
+{#<div id="form_capture_result"></div>#}
+
+{% set data = __SELF__.data.formCapture %}
+{% set objectName = __SELF__.data.objectName %}
+
+{% if data %}
+    <div class="offer-partners" id="form_capture_result">
+        <div class="container">
+            <div class="offer-partners__body row justify-content-center">
+                <div class="offer-partners__title title col-12 col-md-9">{{ data.survey }}</div>
+                <div class="offer-partners__btn mr-4">
+                    <button class="kuzon-btn-min kuzon-btn kuzon-btn--view-2"
+                            data-request="{{ __SELF__ }}::onMakeAnswer"
+                            data-request-data="form_capture_id: {{ data.id }}, status: 0, objectName: '{{ objectName }}'"
+                    >{{ data.answer_no }}</button>
+                </div>
+                <div class="offer-partners__btn">
+                    <button class="kuzon-btn-min kuzon-btn modal--js"
+                            data-toggle="modal"
+                            data-target="#modalContainer"
+                            data-modal-name="{{ __SELF__ }}::FeedbackFormCapture"
+                            data-modal-param="form_capture_id: {{ data.id }}, status: 1,  objectName: '{{ objectName }}'"
+                    >{{ data.answer_yes }}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %}

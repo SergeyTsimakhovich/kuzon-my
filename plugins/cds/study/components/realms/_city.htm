@@ -1,0 +1,43 @@
+{% set data = __SELF__.data %}
+{% set attr = __SELF__.properties.modal and  data.user_city.selected_city == 'false' ? 'data-city-selected="false"' : '' %}
+
+<nav class="city__block">
+
+    <div class="city__current">
+        <div class="modal--js" {{ attr }} data-toggle="modal" data-target="#modalContainer" data-modal-name="Realms::SearchCity">
+            {{ data.user_city.name }}
+            <svg class="city__current-svg" width="15" height="15">
+                <use xlink:href="#currentSity"></use>
+            </svg>
+        </div>
+        
+        {% if __SELF__.properties.modal and  data.user_city.selected_city == 'false' %}
+        <div class="kuzon-modal-city">
+            <div class="kuzon-modal-city__title">
+                Это ваш город?
+                <div class="city d-md-none" style="margin-top: 10px;">
+                    
+                    <nav class="city__block">
+                    
+                        <div class="city__current">
+                            <div class="modal--js" data-city-selected="&quot;false&quot;" data-toggle="modal" data-target="#modalContainer" data-modal-name="Realms::SearchCity" data-modal-param="name: 'Тюмень'">
+                                Тюмень 
+                                <svg id="currentSity" viewBox="0 0 15 15">
+                                    <path d="M13.5323 0C13.3644 0 13.1927 0.0322266 13.0228 0.103125L0.842044 5.7249C-0.563325 6.38086 -0.0948682 8.44219 1.40425 8.44219H6.55786V13.5958C6.55786 14.475 7.26713 15 7.98578 15C8.49262 15 9.00385 14.7393 9.27514 14.158L14.8972 1.97695C15.2948 1.02217 14.4768 0 13.5323 0ZM14.0464 1.58438L8.42582 13.7619C8.33266 13.9617 8.18442 14.0631 7.98549 14.0631C7.81557 14.0631 7.49448 13.9655 7.49448 13.5961V7.50527H1.40425C1.0688 7.50527 0.975345 7.24658 0.950443 7.13525C0.918216 6.99082 0.913236 6.72568 1.23462 6.57568L13.3834 0.967969C13.4335 0.947168 13.4822 0.937207 13.5326 0.937207C13.6913 0.937207 13.8692 1.04414 13.9752 1.20322C14.0394 1.29961 14.1018 1.44961 14.0464 1.58438Z"></path>
+                                </svg>
+                            </div>      
+                        </div>    
+                    </nav>
+                </div>
+            </div>
+            <div class="kuzon-modal-city__btns">
+                <button type="button" class="kuzon-modal-city__btn kuzon-modal-city__no kuzon-btn kuzon-btn--view-3 modal--js" data-toggle="modal" data-target="#modalContainer" data-modal-name="Realms::SearchCity" >Нет</button>
+                <button type="button"class="kuzon-modal-city__btn kuzon-btn kuzon-modal-city__yes kuzon-btn--view-7" data-request="{{ __SELF__ }}::onSetCity">Да</button>
+            </div>
+        </div>
+        {% endif %}
+     
+    </div>    
+
+</nav>
+

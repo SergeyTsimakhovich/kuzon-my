@@ -1,0 +1,8 @@
+
+{% for item in __SELF__.data.menus %}
+    <a class="social social--{{ item.custom_data }}" href="{{ item.slug }}" target="_blank">
+        <svg class="social__svg" width="25" height="25">
+            <use xlink:href="#{{ item.custom_data }}"></use>
+        </svg>
+    </a>
+{% endfor %}

@@ -1,0 +1,65 @@
+{% set user = Session.user %}
+
+<div class="lk-main-info__form-group kuzon-form-group kuzon-form-group--contact lk-main-info__form-group row">
+    <div class="col-12 col-sm-11">
+        <div class="kuzon-form-group__items row">
+            <div class="kuzon-form-group__item col-12 col-lg-6">
+                <div class="kuzon-input">
+                    <input type="text" class=" kuzon-input__input {{ user_type == 2 ? 'kv-req kv-name' : '' }}" placeholder="   " name="surname" value="{{ user.surname }}">
+                    <span class="kuzon-input__placeholder">Фамилия{{ user_type == 2 ? '*' : '' }}</span>
+                </div>
+            </div>
+            <div class="kuzon-form-group__item col-12 col-lg-6">
+                <div class="kuzon-input">
+                    <input type="text" class=" kv-req kuzon-input__input {{ user_type == 2 ? 'kv-name' : '' }}" placeholder="   " name="name" value="{{ user.name }}" required>
+                    <span class="kuzon-input__placeholder">Имя*</span>
+                </div>
+            </div>
+            <div class="kuzon-form-group__item col-12 col-lg-6">
+                <div class="kuzon-input">
+                    <input type="text" class=" kuzon-input__input {{ user_type == 2 ? 'kv-req kv-name' : '' }}" placeholder="   " name="midname" value="{{ user.midname }}">
+                    <span class="kuzon-input__placeholder">Отчество{{ user_type == 2 ? '*' : '' }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="lk-main-info__form-group kuzon-form-group kuzon-form-group--day lk-main-info__form-group row">
+    <div class="col-12 col-sm-11">
+        <div class="kuzon-form-group__items row">
+            <div class="kuzon-form-group__item col-12 col-lg-6">
+                <div class="kuzon-input">
+                    <input type="text" class="kuzon-input__input kuzon-input__input--datepicker kv-date {{ user_type == 2 ? 'kv-req' : '' }}" placeholder="   " maxlength="10" minlength="10" name="birth_date" value="{{ user.birthDateView }}">
+                    <span class="kuzon-input__placeholder">Дата рождения{{ user_type == 2 ? '*' : '' }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="lk-main-info__form-group kuzon-form-group kuzon-form-group--phone lk-main-info__form-group row">
+    <div class="col-12 col-sm-11">
+        <div class="kuzon-form-group__items row">
+            <div class="kuzon-form-group__item col-12 col-lg-6">
+                <div class="kuzon-input">
+                    <input type="text" class="kuzon-input__input kv-phone {{ user_type == 1 ? 'kv-req' : '' }}" placeholder="   " name="username" value="{{ user.usernameView }}">
+                    <span class="kuzon-input__placeholder">{{ user_type == 1 ? 'Номер телефона*' : 'Телефон организации' }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="lk-main-info__form-group kuzon-form-group kuzon-form-group--email lk-main-info__form-group row">
+    <div class="col-12 col-sm-11">
+        <div class="kuzon-form-group__items row">
+            <div class="kuzon-form-group__item col-12 col-lg-6">
+                <div class="kuzon-input">
+                    <input type="text" class="kuzon-input__input kv-email kv-req" placeholder="   " name="email"  value="{{ user.email }}" required>
+                    <span class="kuzon-input__placeholder">Электронная почта*</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

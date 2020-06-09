@@ -1,0 +1,13 @@
+ <p class="price"><span>{{ cost.costFormated }}</span>₽</p>
+{% if cost.discount > 0 %}
+<div class="discount">
+    <p class="discount-capture">Экономия {{ cost.discount }}%:</p>
+{#    <p class="discount-price"><span>{{ cost.costDiscount }}</span>₽</p>#}
+</div>
+{% endif %}
+
+<button class="select-button modal--js" id ="button-{{ cost.tariff_id }}"
+        data-toggle="modal"
+        data-target="#modalContainer"
+        data-modal-name="Tariffs::Selected"
+        data-modal-param="tariff_id: {{ cost.tariff_id }}, cost_period: {{ cost.id }}">Выбрать</button>

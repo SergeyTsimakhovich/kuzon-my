@@ -1,0 +1,32 @@
+{% set user = Session.user %}
+
+<div class="lk-main-info__form-group kuzon-form-group kuzon-form-group--town lk-main-info__form-group row">
+    <div class="col-12 col-sm-11">
+        <div class="kuzon-form-group__items row">
+            <div class="kuzon-form-group__item col-12 col-md-6">
+                <div class="kuzon-input">
+                    <input type="text" class="kuzon-input__input kv-req kv-rus" placeholder="   " name="name_org" value="{{ user.name_org }}" required>
+                    <span class="kuzon-input__placeholder">Название организации*</span>
+                </div>
+            </div>
+            <div class="kuzon-form-group__item col-12 col-md-6">
+                <div class="kuzon-input">
+                    <input type="text" class="kuzon-input__input kv-req justNumber" placeholder="   " maxlength="12" minlength="10" name="inn" value="{{ user.inn }}" maxlength="12" required>
+                    <span class="kuzon-input__placeholder">ИНН*</span>
+                </div>
+            </div>
+            <div class="kuzon-form-group__item col-12 col-md-6">
+                <div class="kuzon-input">
+                    <input type="text" class="kuzon-input__input kv-req justNumber" placeholder="   " name="kpp" value="{{ user.kpp }}" maxlength="9" required>
+                    <span class="kuzon-input__placeholder">КПП*</span>
+                </div>
+            </div>
+            <div class="kuzon-form-group__item col-12 col-md-6">
+                <div class="kuzon-input">
+                    <input type="text" class="kuzon-input__input kv-req justNumber" placeholder="   " name="orgn" value="{{ user.orgn }}" maxlength="13" required>
+                    <span class="kuzon-input__placeholder">ОГРН*</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

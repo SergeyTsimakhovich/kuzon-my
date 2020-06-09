@@ -1,0 +1,21 @@
+{% set prop = __SELF__.properties %}
+
+{% if prop.class == 'fix' %}
+    <ul class="main-nav__items">
+        {% for item in __SELF__.data.menus %}
+            <li class="main-nav__item">
+                <a class="main-nav__link" href="{{ item.slug|app }}" title="{{ item.seo_description }}">{{ item.title }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+{% if prop.class == 'mobile' %}
+    <ul class="header-links__block">
+        {% for item in __SELF__.data.menus %}
+            <li class="header-links__item">
+                <a class="header-links__link" href="{{ item.slug|app }}" title="{{ item.seo_description }}">{{ item.title }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}

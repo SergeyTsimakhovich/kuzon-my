@@ -1,0 +1,35 @@
+{% set data = __SELF__.data %}
+
+<div class="row">
+    <div class="col-md-12">
+        <h3 class="lk-favor__title title-3">Выберите период</h3>
+        <div class="kuzon-form-group kuzon-form-group--day row">
+            <div class="col-12 col-sm-11">
+                {{ form_ajax('Tariffs::onChangeDate', { class: 'kuzon-validation','data-request-flash': 1 }) }}
+                <div class="kuzon-form-group__items row">
+                    <div class="kuzon-form-group__item col-12 col-lg-4">
+                        <div class="kuzon-input">
+                            <input type="text" class="kuzon-input__input kuzon-input__input--datepicker kuzon-input-date--start kv-date" placeholder=" " name="date_start" value="{{ data.date.start|date('d.m.Y') }}">
+                            <span class="kuzon-input__placeholder">Начало периода</span>
+                        </div>
+                    </div>
+                    <div class="kuzon-form-group__item col-12 col-lg-4">
+                        <div class="kuzon-input">
+                            <input type="text" class="kuzon-input__input kuzon-input__input--datepicker kuzon-input-date--end kv-date"  placeholder=" " name="date_end" value="{{ data.date.end|date('d.m.Y') }}">
+                            <span class="kuzon-input__placeholder">Конец периода</span>
+                        </div>
+                    </div>
+                    <div class="kuzon-form-group__item col-12 col-lg-4">
+                        <button class="kuzon-btn kuzon-btn--view-3" id="get-statistics" type="submit">Сформировать</button>
+                    </div>
+                </div>
+                {{ form_close() }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12" id="finance_list">
+                {% partial '@finance_list_table' %}
+            </div>
+        </div>
+    </div>
+</div>

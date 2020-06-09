@@ -1,0 +1,10 @@
+<label for="sectorLast">Подкатегория</label>
+<select id="sectorLast" data-request="{{ __SELF__ }}::onSelectSectorLast" name="sector_last_id" >
+    <option selected value=""></option>
+
+    {% for index, item in subCategoryLastLevel %}
+        <option value="{{ index }}">{{ item }}</option>
+    {% endfor %}
+
+</select>
+

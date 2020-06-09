@@ -1,0 +1,6 @@
+<a href="{{ item.link }}" title="{{ item.title }}" {{ item.new_window ? "target='_blank'" : '' }}>
+    <img style="border: 1px solid;" width="{{ data.width }}" height="{{ data.height }}"
+         src="{{ item.image ? item.image.path|app : ('//picsum.photos/' ~ data.width ~ '/' ~ data.height ~ '?random=' ~ item.id) }}"
+         alt="{{ item.title }}">
+</a>
+

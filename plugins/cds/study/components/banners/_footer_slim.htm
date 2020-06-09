@@ -1,0 +1,20 @@
+{% set data = __SELF__.data %}
+
+<div class="container">
+    <div class="col-12 offset-xl-1 col-xl-10 p-0">
+        <h2 class="title">Наши партнеры</h2>
+        <div class="partners__wrapper">
+            <div class="row">
+                {% for item in data.banners %}
+                    {% if item.thumbnail %}
+                        <div class="col-6 col-md-3 partners__item">
+                            <a class="partners__block" rel="nofollow" href="{{ item.link }}" {{ item.new_window ? "target='_blank'" : '' }}>
+                                <img class="seo__img" src="{{ item.thumbnail }}" alt="{{ item.title }}" title="{{ item.image.description }}">
+                            </a>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>

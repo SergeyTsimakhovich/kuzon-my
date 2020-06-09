@@ -1,0 +1,32 @@
+{% set financeList = __SELF__.data.financeList ?? financeList %}
+
+{% set sum = 0 %}
+
+<div class="kuzon-table--scrollable">
+    <table class="kuzon-table kuzon-table--finance">
+            <tr class="kuzon-table__tr">
+                <th class="kuzon-table__td kuzon-table__th">Дата</th>
+                <th class="kuzon-table__td kuzon-table__th">Сумма (Р.)</th>
+                <th class="kuzon-table__td kuzon-table__th">Комментарий</th>
+            </tr>
+        {% for item in financeList %}
+            {% set sum = sum + item.cost %}
+            <tr class="kuzon-table__tr">
+                <td class="kuzon-table__td">{{ item.updated_at|date('d.m.Y H:i') }}</td>
+                <td class="kuzon-table__td">{{ item.costFormated|raw }}</td>
+                <td class="kuzon-table__td" width="45%">{{ item.commentText }}</td>
+            </tr>
+            {% if loop.last %}
+                <tr class="kuzon-table__tr">
+                    <td class="kuzon-table__td">Итого</td>
+                    <td class="kuzon-table__td">{{ financeList.sumAll|raw }}</td>
+                    <td class="kuzon-table__td"></td>
+                </tr>
+            {% endif %}
+        {% else %}
+            <tr class="kuzon-table__tr">
+                <td class="kuzon-table__td" colspan="4">Операции на данный период отсутствуют</td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>
